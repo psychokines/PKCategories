@@ -1,0 +1,22 @@
+PODS:
+  - PKCategories (0.1.0):
+    - PKCategories/Foundation (= 0.1.0)
+    - PKCategories/Other (= 0.1.0)
+    - PKCategories/UIKit (= 0.1.0)
+  - PKCategories/Foundation (0.1.0)
+  - PKCategories/Other (0.1.0)
+  - PKCategories/UIKit (0.1.0)
+
+DEPENDENCIES:
+  - PKCategories (from `../`)
+
+EXTERNAL SOURCES:
+  PKCategories:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PKCategories: 82eb9fd40059b12b7b2e82c4473e2af32bc22313
+
+PODFILE CHECKSUM: 3a3cfc15f3199ab17e928be3e320b1d27ca01e86
+
+COCOAPODS: 1.5.3
