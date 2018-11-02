@@ -9,8 +9,6 @@
 #import "UIDevice+PKExtend.h"
 #include <ifaddrs.h>
 #include <arpa/inet.h>
-#include <sys/param.h>
-#include <sys/mount.h>
 #include <sys/sysctl.h>
 #import <mach/mach_host.h>
 
@@ -118,26 +116,6 @@
     }
     NSUInteger mem_free = vm_stat.free_count * pagesize;
     return mem_free;
-}
-
-+ (long long)pk_freeDiskSpaceBytes {
-    struct statfs buf;
-    long long freespace;
-    freespace = 0;
-    if ( statfs("/private/var", &buf) >= 0 ) {
-        freespace = (long long)buf.f_bsize * buf.f_bfree;
-    }
-    return freespace;
-}
-
-+ (long long)pk_totalDiskSpaceBytes {
-    struct statfs buf;
-    long long totalspace;
-    totalspace = 0;
-    if ( statfs("/private/var", &buf) >= 0 ) {
-        totalspace = (long long)buf.f_bsize * buf.f_blocks;
-    }
-    return totalspace;
 }
 
 @end

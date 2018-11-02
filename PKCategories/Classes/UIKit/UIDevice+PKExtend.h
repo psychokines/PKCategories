@@ -39,12 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 获取手机可用内存 (单位：字节数) */
 + (NSUInteger)pk_freeMemoryBytes;
 
-/** 获取手机硬盘空闲空间 (单位：字节数) */
-+ (long long)pk_freeDiskSpaceBytes;
-
-/** 获取手机硬盘总空间 (单位：字节数) */
-+ (long long)pk_totalDiskSpaceBytes;
-
 @end
 
 NS_ASSUME_NONNULL_END
