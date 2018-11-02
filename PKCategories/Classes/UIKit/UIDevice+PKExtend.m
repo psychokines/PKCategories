@@ -120,22 +120,22 @@
     return mem_free;
 }
 
-+ (NSUInteger)pk_freeDiskSpaceBytes {
++ (long long)pk_freeDiskSpaceBytes {
     struct statfs buf;
-    NSUInteger freespace;
+    long long freespace;
     freespace = 0;
     if ( statfs("/private/var", &buf) >= 0 ) {
-        freespace = (NSUInteger)(buf.f_bsize * buf.f_bfree);
+        freespace = (long long)buf.f_bsize * buf.f_bfree;
     }
     return freespace;
 }
 
-+ (NSUInteger)pk_totalDiskSpaceBytes {
++ (long long)pk_totalDiskSpaceBytes {
     struct statfs buf;
-    NSUInteger totalspace;
+    long long totalspace;
     totalspace = 0;
     if ( statfs("/private/var", &buf) >= 0 ) {
-        totalspace = (NSUInteger)(buf.f_bsize * buf.f_blocks);
+        totalspace = (long long)buf.f_bsize * buf.f_blocks;
     }
     return totalspace;
 }

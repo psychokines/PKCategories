@@ -40,10 +40,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSUInteger)pk_freeMemoryBytes;
 
 /** 获取手机硬盘空闲空间 (单位：字节数) */
-+ (NSUInteger)pk_freeDiskSpaceBytes;
++ (long long)pk_freeDiskSpaceBytes;
 
 /** 获取手机硬盘总空间 (单位：字节数) */
-+ (NSUInteger)pk_totalDiskSpaceBytes;
++ (long long)pk_totalDiskSpaceBytes;
 
 @end
 
