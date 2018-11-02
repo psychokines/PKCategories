@@ -125,7 +125,7 @@
     NSUInteger freespace;
     freespace = 0;
     if ( statfs("/private/var", &buf) >= 0 ) {
-        freespace = (NSUInteger)buf.f_bsize * buf.f_bfree;
+        freespace = (NSUInteger)(buf.f_bsize * buf.f_bfree);
     }
     return freespace;
 }
@@ -135,7 +135,7 @@
     NSUInteger totalspace;
     totalspace = 0;
     if ( statfs("/private/var", &buf) >= 0 ) {
-        totalspace = (NSUInteger)buf.f_bsize * buf.f_blocks;
+        totalspace = (NSUInteger)(buf.f_bsize * buf.f_blocks);
     }
     return totalspace;
 }
