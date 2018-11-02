@@ -116,26 +116,26 @@
     if (host_statistics(host_port, HOST_VM_INFO, (host_info_t)&vm_stat, &host_size) != KERN_SUCCESS) {
         return 0;
     }
-    unsigned long mem_free = vm_stat.free_count * pagesize;
+    NSUInteger mem_free = vm_stat.free_count * pagesize;
     return mem_free;
 }
 
 + (NSUInteger)pk_freeDiskSpaceBytes {
     struct statfs buf;
-    long long freespace;
+    NSUInteger freespace;
     freespace = 0;
     if ( statfs("/private/var", &buf) >= 0 ) {
-        freespace = (long long)buf.f_bsize * buf.f_bfree;
+        freespace = (NSUInteger)buf.f_bsize * buf.f_bfree;
     }
     return freespace;
 }
 
 + (NSUInteger)pk_totalDiskSpaceBytes {
     struct statfs buf;
-    long long totalspace;
+    NSUInteger totalspace;
     totalspace = 0;
     if ( statfs("/private/var", &buf) >= 0 ) {
-        totalspace = (long long)buf.f_bsize * buf.f_blocks;
+        totalspace = (NSUInteger)buf.f_bsize * buf.f_blocks;
     }
     return totalspace;
 }
