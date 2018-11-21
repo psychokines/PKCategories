@@ -9,13 +9,49 @@
 #import "UIButton+PKExtend.h"
 #import <objc/runtime.h>
 
+@implementation UIButton (PKExtend)
+
+- (void)pk_updateImagePosition:(PKButtonImagePosition)postion spacing:(CGFloat)spacing {
+    CGSize imageSize = self.imageView.image.size;
+    CGSize labelSize = self.titleLabel.intrinsicContentSize;
+    
+    switch (postion) {
+        case PKButtonImagePositionLeft: {
+            self.imageEdgeInsets = UIEdgeInsetsMake(0, - spacing / 2, 0, spacing / 2);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0, spacing / 2, 0, - spacing / 2);
+        } break;
+            
+        case PKButtonImagePositionRight: {
+            CGFloat imageOffset = labelSize.width + spacing / 2;
+            CGFloat titleOffset = imageSize.width + spacing / 2;
+            self.imageEdgeInsets = UIEdgeInsetsMake(0, imageOffset, 0, - imageOffset);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0, - titleOffset, 0, titleOffset);
+        } break;
+            
+        case PKButtonImagePositionTop: {
+            self.imageEdgeInsets = UIEdgeInsetsMake(-labelSize.height - spacing, 0, 0, -labelSize.width);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize.width, -imageSize.height - spacing, 0);
+        } break;
+            
+        case PKButtonImagePositionBottom: {
+            self.imageEdgeInsets = UIEdgeInsetsMake(labelSize.height + spacing, 0, 0, -labelSize.width);
+            self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize.width, imageSize.height + spacing, 0);
+        } break;
+            
+        default: break;
+    }
+}
+
+@end
+
+
 static void *UIButtonAssociatedPKIndicatorViewKey = &UIButtonAssociatedPKIndicatorViewKey;
 static void *UIButtonAssociatedPKNormalTitleKey = &UIButtonAssociatedPKNormalTitleKey;
 static void *UIButtonAssociatedPKNormalImageKey = &UIButtonAssociatedPKNormalImageKey;
 static void *UIButtonAssociatedPKTitleEdgeInsetsKey = &UIButtonAssociatedPKTitleEdgeInsetsKey;
 static void *UIButtonAssociatedPKBackgroundColorKey = &UIButtonAssociatedPKBackgroundColorKey;
 
-@implementation UIButton (PKExtend)
+@implementation UIButton (PKIndicator)
 
 - (BOOL)pk_isIndicatorShowing {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
@@ -84,7 +120,7 @@ static void *UIButtonAssociatedPKBackgroundColorKey = &UIButtonAssociatedPKBackg
     [self setTitle:text forState:UIControlStateNormal];
     [self setImage:nil forState:UIControlStateNormal];
     self.userInteractionEnabled = NO;
-
+    
     CGFloat spacing = 15;
     CGSize size = [self.titleLabel sizeThatFits:self.bounds.size];
     CGFloat padding = (self.bounds.size.width - size.width) / 2;

@@ -27,6 +27,7 @@
 #import "UIColor+PKExtend.h"
 #import "UIImage+PKExtend.h"
 #import "UIDevice+PKExtend.h"
+#import "UIApplication+PKExtend.h"
 #import "UITextField+PKExtend.h"
 #import "UIScrollView+PKExtend.h"
 #import "UIViewController+PKExtend.h"
