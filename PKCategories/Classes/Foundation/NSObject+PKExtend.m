@@ -49,7 +49,9 @@
 @end
 
 
-static void *NSObjectPKAssociatedInfoKey = &NSObjectPKAssociatedInfoKey;
+static void *NSObjectPKAssociatedObjectKey = &NSObjectPKAssociatedObjectKey;
+static void *NSObjectPKAssociatedStringKey = &NSObjectPKAssociatedStringKey;
+static void *NSObjectPKAssociatedBOOLKey = &NSObjectPKAssociatedBOOLKey;
 @implementation NSObject (PKAssociated)
 
 - (void)pk_setAssociatedValue:(id)value withKey:(void *)key {
@@ -72,12 +74,28 @@ static void *NSObjectPKAssociatedInfoKey = &NSObjectPKAssociatedInfoKey;
     objc_removeAssociatedObjects(self);
 }
 
-- (id)pk_associatedInfo {
-    return [self pk_getAssociatedValueForKey:NSObjectPKAssociatedInfoKey];
+- (id)pk_associatedObject {
+    return [self pk_getAssociatedValueForKey:NSObjectPKAssociatedObjectKey];
 }
 
-- (void)setPk_associatedInfo:(id)pk_associatedInfo {
-    [self pk_setAssociatedValue:pk_associatedInfo withKey:NSObjectPKAssociatedInfoKey];
+- (void)setPk_associatedObject:(id)pk_associatedObject {
+    [self pk_setAssociatedValue:pk_associatedObject withKey:NSObjectPKAssociatedObjectKey];
+}
+
+- (NSString *)pk_associatedStringValue {
+    return [self pk_getAssociatedValueForKey:NSObjectPKAssociatedStringKey];
+}
+
+- (void)setPk_associatedStringValue:(NSString *)pk_associatedStringValue {
+    [self pk_setAssociatedValue:pk_associatedStringValue withKey:NSObjectPKAssociatedStringKey];
+}
+
+- (BOOL)pk_associatedBoolValue {
+    return [self pk_getAssociatedValueForKey:NSObjectPKAssociatedBOOLKey];
+}
+
+- (void)setPk_associatedBoolValue:(BOOL)pk_associatedBoolValue {
+    [self pk_setAssociatedValue:@(pk_associatedBoolValue) withKey:NSObjectPKAssociatedBOOLKey];
 }
 
 @end

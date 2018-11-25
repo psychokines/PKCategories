@@ -41,8 +41,14 @@ NS_ASSUME_NONNULL_BEGIN
 /** Remove all associated values. */
 - (void)pk_removeAssociatedValues;
 
-/** 为NSObject关联一个obj属性 */
-@property (nonatomic, strong, nullable) id pk_associatedInfo;
+/** 为NSObject关联一个Object属性 */
+@property (nonatomic, strong, nullable) id pk_associatedObject;
+
+/** 为NSObject关联一个String属性 */
+@property (nonatomic, strong, nullable) NSString *pk_associatedStringValue;
+
+/** 为NSObject关联一个BOOL属性 */
+@property (nonatomic, assign) BOOL pk_associatedBoolValue;
 
 @end
 

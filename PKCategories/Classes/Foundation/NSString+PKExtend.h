@@ -111,6 +111,14 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+@interface NSString (PKHash)
+
+/*** 将字符串进行MD5摘要计算 */
+- (nullable NSString *)pk_md5String;
+
+@end
+
+
 @interface NSString (PKMatched)
 
 /**

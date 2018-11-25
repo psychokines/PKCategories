@@ -126,6 +126,18 @@
 @end
 
 
+@implementation NSString (PKHash)
+
+- (NSString *)pk_md5String {
+    NSData *data =[self dataUsingEncoding:NSUTF8StringEncoding];
+    if (!data) return nil;
+    return [data pk_md5String];
+}
+
+@end
+
+
+
 @implementation NSString (PKMatched)
 
 - (BOOL)pk_matchesRegex:(NSString *)regex {
