@@ -71,4 +71,37 @@ typedef NS_OPTIONS(NSUInteger, PKEdgeLinePosition) {
 
 @end
 
+
+@interface UIView (PKBadge)
+
+@property (nonatomic, assign, readonly) BOOL pk_badgeDisplaying;
+@property (nonatomic, strong, readonly, nullable) UILabel *pk_badgeLabel;
+
+/** 为视图添加badge并设置文本 */
+- (void)pk_showBadgeWithText:(nullable NSString *)text;
+
+/** 隐藏badge */
+- (void)pk_badgeHide;
+
+/** 将从父视图上移除badge并恢复其它默认值 */
+- (void)pk_badgeRemove;
+
+/**
+ * @brief 设置badge的偏移位置, 其中心点默认为父视图的右上角
+ * offset.horizontal > 0，向右偏移，反之向左偏移
+ * offset.vertical > 0，向下偏移，反之向上偏移
+ */
+- (void)pk_badgeOffset:(UIOffset)offset;
+
+/** 是否圆角显示badge，默认NO */
+- (void)pk_badgeAlwaysRound:(BOOL)isRound;
+
+/**
+ * @brief 用于等比例调整badge的大小
+ * 注意：若需要同时设置圆角，应在调用`-pk_badgeAlwaysRound`该方法后再调用，否则该方法将无效!!!
+ */
+- (void)pk_badgeTransformHeight:(CGFloat)height;
+
+@end
+
 NS_ASSUME_NONNULL_END

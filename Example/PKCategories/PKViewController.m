@@ -19,6 +19,22 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    aButton.frame = CGRectMake(50, 200, 100, 100);
+    aButton.backgroundColor = [UIColor orangeColor];
+    [aButton setTitle:@"button" forState:UIControlStateNormal];
+    [aButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:aButton];
+
+    [aButton pk_badgeOffset:UIOffsetMake(50, 0)];
+    [aButton pk_showBadgeWithText:@"发7增功能"];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage pk_imageWithColor:[UIColor pk_randomColor]] forBarMetrics:UIBarMetricsDefault];
+}
+
+- (void)buttonClicked:(UIButton *)sender {
+    [sender pk_badgeRemove];
 }
 
 - (void)didReceiveMemoryWarning

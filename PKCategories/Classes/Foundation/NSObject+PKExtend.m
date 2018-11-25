@@ -91,7 +91,7 @@ static void *NSObjectPKAssociatedBOOLKey = &NSObjectPKAssociatedBOOLKey;
 }
 
 - (BOOL)pk_associatedBoolValue {
-    return [self pk_getAssociatedValueForKey:NSObjectPKAssociatedBOOLKey];
+    return [[self pk_getAssociatedValueForKey:NSObjectPKAssociatedBOOLKey] boolValue];
 }
 
 - (void)setPk_associatedBoolValue:(BOOL)pk_associatedBoolValue {

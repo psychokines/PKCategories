@@ -48,6 +48,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIImage (PKRotate)
 
 /**
+ *  @brief 修正图片旋转
+ *
+ *  @return 修正后的图片
+ */
+- (UIImage *)pk_fixOrientation;
+
+/**
 * @brief 返回旋转后的新图片(相对于中心点旋转)
 *
 * @param radians 逆时针旋转弧度
