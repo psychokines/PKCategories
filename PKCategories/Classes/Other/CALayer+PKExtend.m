@@ -197,7 +197,7 @@
     [self addAnimation:animation forKey:@"_PKCategories.anim.positionKey"];
 }
 
-- (void)zh_removePreviousShakeAnimation {
+- (void)pk_removePreviousShakeAnimation {
     [self removeAnimationForKey:@"_PKCategories.anim.positionKey"];
 }
 

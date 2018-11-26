@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
                                   offset:(CGFloat)offset;
 
 /** 移除对应的摇晃动画(pk_addShakeAnimationWithDuration:...) */
-- (void)zh_removePreviousShakeAnimation;
+- (void)pk_removePreviousShakeAnimation;
 
 /**
  * @brief 当图层内容变化时，将以淡入淡出动画使内容渐变

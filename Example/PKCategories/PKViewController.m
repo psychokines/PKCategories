@@ -28,7 +28,7 @@
     [self.view addSubview:aButton];
 
     [aButton pk_badgeOffset:UIOffsetMake(50, 0)];
-    [aButton pk_showBadgeWithText:@"发7增功能"];
+    [aButton pk_showBadgeWithText:@"新功能"];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage pk_imageWithColor:[UIColor pk_randomColor]] forBarMetrics:UIBarMetricsDefault];
 }

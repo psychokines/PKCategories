@@ -45,14 +45,14 @@
 }
 
 - (NSString *)pk_ipAddressWIFI {
-    return [self zh_ipAddressWithIfaName:@"en0"];
+    return [self pk_ipAddressWithIfaName:@"en0"];
 }
 
 - (NSString *)pk_ipAddressCell {
-    return [self zh_ipAddressWithIfaName:@"pdp_ip0"];
+    return [self pk_ipAddressWithIfaName:@"pdp_ip0"];
 }
 
-- (NSString *)zh_ipAddressWithIfaName:(NSString *)name {
+- (NSString *)pk_ipAddressWithIfaName:(NSString *)name {
     if (name.length == 0) return nil;
     NSString *address = nil;
     struct ifaddrs *addrs = NULL;
