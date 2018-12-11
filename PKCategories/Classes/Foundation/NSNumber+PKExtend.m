@@ -50,8 +50,7 @@
     CGFloat numberValue = number.doubleValue;
     CGFloat factor = pow(10, place);
     CGFloat targetValue = (floor(numberValue * factor + 0.5)) / factor;
-    NSString *format = [NSString stringWithFormat:@"%%.%@f", @(place)];
-    return [NSString stringWithFormat:format, targetValue];
+    return [NSString stringWithFormat:@"%.*lf%%", place, targetValue];
 }
 
 + (NSString *)pk_stringWithDoubleDigits:(NSNumber *)number {
@@ -61,9 +60,8 @@
 + (NSString *)pk_stringWithPlainDigits:(NSNumber *)number keepPlaces:(short)place {
     CGFloat numberValue = number.doubleValue;
     CGFloat factor = pow(10, place);
-    NSString *format = [NSString stringWithFormat:@"%%.%@f", @(place)];
     CGFloat targetValue = ((NSInteger)(numberValue * factor)) / factor;
-    return [NSString stringWithFormat:format, targetValue];
+    return [NSString stringWithFormat:@"%.*lf%%", place, targetValue];
 }
 
 + (NSString *)pk_stringWithPlainDoubleDigits:(NSNumber *)number {
