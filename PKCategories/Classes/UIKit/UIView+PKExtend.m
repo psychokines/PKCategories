@@ -338,3 +338,53 @@ static void *UIViewAssociatedPKBadgeLabelKey = &UIViewAssociatedPKBadgeLabelKey;
 }
 
 @end
+
+
+static void *UIViewPKIsIndicatorLoadingKey = &UIViewPKIsIndicatorLoadingKey;
+static void *UIViewPKIndicatorLoadingViewKey = &UIViewPKIndicatorLoadingViewKey;
+
+@implementation UIView (PKIndicatorLoading)
+
+- (BOOL)pk_isIndicatorLoading {
+    return [objc_getAssociatedObject(self, UIViewPKIsIndicatorLoadingKey) boolValue];
+}
+
+- (void)setPk_isIndicatorLoading:(BOOL)pk_isIndicatorLoading {
+    objc_setAssociatedObject(self, UIViewPKIsIndicatorLoadingKey, @(pk_isIndicatorLoading), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (UIActivityIndicatorView *)pk_indicatorView {
+    UIActivityIndicatorView *loadingView = objc_getAssociatedObject(self, UIViewPKIndicatorLoadingViewKey);
+    if (!loadingView) {
+        loadingView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        loadingView.hidesWhenStopped = NO;
+        loadingView.color = [UIColor grayColor];
+        objc_setAssociatedObject(self, UIViewPKIndicatorLoadingViewKey, loadingView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return loadingView;
+}
+
+- (void)pk_beginIndicatorLoading:(UIColor *)tintColor {
+    if (self.pk_isIndicatorLoading) return;
+    self.pk_indicatorView.color = tintColor;
+    [self pk_beginIndicatorLoading];
+}
+
+- (void)pk_beginIndicatorLoading {
+    if (self.pk_isIndicatorLoading) return;
+    [self setPk_isIndicatorLoading:YES];
+    [self layoutIfNeeded];
+    [self addSubview:self.pk_indicatorView];
+    self.pk_indicatorView.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
+    [self.pk_indicatorView startAnimating];
+}
+
+- (void)pk_endIndicatorLoading {
+    if (!self.pk_isIndicatorLoading) return;
+    [self setPk_isIndicatorLoading:NO];
+    [self.pk_indicatorView stopAnimating];
+    [self.pk_indicatorView removeFromSuperview];
+    objc_setAssociatedObject(self, UIViewPKIndicatorLoadingViewKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+@end

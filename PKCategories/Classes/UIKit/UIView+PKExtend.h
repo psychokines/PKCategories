@@ -104,4 +104,21 @@ typedef NS_OPTIONS(NSUInteger, PKEdgeLinePosition) {
 
 @end
 
+
+@interface UIView (PKIndicatorLoading)
+
+/** 指示器是否加载中 */
+@property (nonatomic, assign) BOOL pk_isIndicatorLoading;
+
+/** 指示器开始加载 */
+- (void)pk_beginIndicatorLoading;
+
+/** 自定义指示器颜色并开始加载 */
+- (void)pk_beginIndicatorLoading:(UIColor *)tintColor;
+
+/** 指示器结束加载 */
+- (void)pk_endIndicatorLoading;
+
+@end
+
 NS_ASSUME_NONNULL_END

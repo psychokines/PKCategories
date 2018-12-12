@@ -8,6 +8,7 @@
 
 #import "PKViewController.h"
 #import <PKCategories/PKCategories.h>
+#import "PKNextViewController.h"
 
 @interface PKViewController ()
 
@@ -25,6 +26,8 @@
 
     NSString *string5 = [NSNumber pk_percentStringWithDoubleDigits:@(0.126)];
     NSLog(@"string5 is: %@", string5);
+    
+    [self test];
 }
 
 - (void)test {
@@ -44,6 +47,9 @@
 
 - (void)buttonClicked:(UIButton *)sender {
     [sender pk_badgeRemove];
+    
+    PKNextViewController *vc = [PKNextViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
