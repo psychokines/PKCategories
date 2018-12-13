@@ -18,9 +18,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view pk_beginIndicatorLoading];
     
+    [self.view pk_showToastText:@"加载失败" delay:2];
 }
 
 /*

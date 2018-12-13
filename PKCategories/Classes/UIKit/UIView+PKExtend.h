@@ -74,7 +74,7 @@ typedef NS_OPTIONS(NSUInteger, PKEdgeLinePosition) {
 
 @interface UIView (PKBadge)
 
-@property (nonatomic, assign, readonly) BOOL pk_badgeDisplaying;
+@property (nonatomic, assign, readonly) BOOL pk_badgeShowing;
 @property (nonatomic, strong, readonly, nullable) UILabel *pk_badgeLabel;
 
 /** 为视图添加badge并设置文本 */
@@ -83,7 +83,7 @@ typedef NS_OPTIONS(NSUInteger, PKEdgeLinePosition) {
 /** 隐藏badge */
 - (void)pk_badgeHide;
 
-/** 将从父视图上移除badge并恢复其它默认值 */
+/** 移除badge */
 - (void)pk_badgeRemove;
 
 /**
@@ -108,7 +108,7 @@ typedef NS_OPTIONS(NSUInteger, PKEdgeLinePosition) {
 @interface UIView (PKIndicatorLoading)
 
 /** 指示器是否加载中 */
-@property (nonatomic, assign) BOOL pk_isIndicatorLoading;
+@property (nonatomic, assign, readonly) BOOL pk_isIndicatorLoading;
 
 /** 指示器开始加载 */
 - (void)pk_beginIndicatorLoading;
@@ -118,6 +118,20 @@ typedef NS_OPTIONS(NSUInteger, PKEdgeLinePosition) {
 
 /** 指示器结束加载 */
 - (void)pk_endIndicatorLoading;
+
+@end
+
+
+@interface UIView (PKTipToast)
+
+/** 文本提示窗是否显示中 */
+@property (nonatomic, assign, readonly) BOOL pk_isToastShowing;
+
+/** 显示文本提示窗，默认在1.5s后消失 */
+- (void)pk_showToastText:(NSString *)message;
+
+/** 显示文本提示窗，将在delay时间后消失 */
+- (void)pk_showToastText:(NSString *)message delay:(NSTimeInterval)delay;
 
 @end
 

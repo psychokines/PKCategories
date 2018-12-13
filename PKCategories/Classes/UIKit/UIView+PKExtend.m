@@ -232,7 +232,7 @@ static void *UIViewAssociatedPKBadgeLabelKey = &UIViewAssociatedPKBadgeLabelKey;
 }
 
 - (void)setBadgeText:(NSString *)text {
-    self.pk_badgeDisplaying = YES;
+    self.pk_badgeShowing = YES;
     self.pk_badgeLabel.transform = CGAffineTransformIdentity;
     self.pk_badgeLabel.text = text;
     
@@ -276,20 +276,20 @@ static void *UIViewAssociatedPKBadgeLabelKey = &UIViewAssociatedPKBadgeLabelKey;
 }
 
 - (void)pk_badgeHide {
-    if (!self.pk_badgeDisplaying) return;
+    if (!self.pk_badgeShowing) return;
     [UIView animateWithDuration:0.25 animations:^{
         self.pk_badgeLabel.alpha = 0;
     } completion:^(BOOL finished) {
-        self.pk_badgeDisplaying = NO;
+        self.pk_badgeShowing = NO;
     }];
 }
 
 - (void)pk_badgeRemove {
-    if (!self.pk_badgeDisplaying) return;
+    if (!self.pk_badgeShowing) return;
     [UIView animateWithDuration:0.25 animations:^{
         self.pk_badgeLabel.alpha = 0;
     } completion:^(BOOL finished) {
-        self.pk_badgeDisplaying = NO;
+        self.pk_badgeShowing = NO;
         [self.pk_badgeLabel removeFromSuperview];
         objc_setAssociatedObject(self, @selector(pk_badgeAlwaysRound), @(NO), OBJC_ASSOCIATION_ASSIGN);
         objc_setAssociatedObject(self, @selector(pk_badgeOffset), [NSValue valueWithUIOffset:UIOffsetZero], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -302,7 +302,7 @@ static void *UIViewAssociatedPKBadgeLabelKey = &UIViewAssociatedPKBadgeLabelKey;
 }
 
 - (void)pk_badgeOffset:(UIOffset)offset {
-    self.pk_badgeDisplaying = YES;
+    self.pk_badgeShowing = YES;
     NSValue *value = [NSValue valueWithUIOffset:offset];
     objc_setAssociatedObject(self, @selector(pk_badgeOffset), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     CGSize originSize = self.pk_badgeLabel.frame.size;
@@ -329,12 +329,12 @@ static void *UIViewAssociatedPKBadgeLabelKey = &UIViewAssociatedPKBadgeLabelKey;
     [self setBadgeText:self.pk_badgeLabel.text];
 }
 
-- (BOOL)pk_badgeDisplaying {
+- (BOOL)pk_badgeShowing {
     return [objc_getAssociatedObject(self, _cmd) doubleValue];
 }
 
-- (void)setPk_badgeDisplaying:(BOOL)pk_badgeDisplaying {
-    objc_setAssociatedObject(self, @selector(pk_badgeDisplaying), @(pk_badgeDisplaying), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setPk_badgeShowing:(BOOL)pk_badgeShowing {
+    objc_setAssociatedObject(self, @selector(pk_badgeShowing), @(pk_badgeShowing), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
@@ -349,7 +349,7 @@ static void *UIViewPKIndicatorLoadingViewKey = &UIViewPKIndicatorLoadingViewKey;
     return [objc_getAssociatedObject(self, UIViewPKIsIndicatorLoadingKey) boolValue];
 }
 
-- (void)setPk_isIndicatorLoading:(BOOL)pk_isIndicatorLoading {
+- (void)pk_setIndicatorLoading:(BOOL)pk_isIndicatorLoading {
     objc_setAssociatedObject(self, UIViewPKIsIndicatorLoadingKey, @(pk_isIndicatorLoading), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -372,7 +372,7 @@ static void *UIViewPKIndicatorLoadingViewKey = &UIViewPKIndicatorLoadingViewKey;
 
 - (void)pk_beginIndicatorLoading {
     if (self.pk_isIndicatorLoading) return;
-    [self setPk_isIndicatorLoading:YES];
+    [self pk_setIndicatorLoading:YES];
     [self layoutIfNeeded];
     [self addSubview:self.pk_indicatorView];
     self.pk_indicatorView.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
@@ -381,10 +381,75 @@ static void *UIViewPKIndicatorLoadingViewKey = &UIViewPKIndicatorLoadingViewKey;
 
 - (void)pk_endIndicatorLoading {
     if (!self.pk_isIndicatorLoading) return;
-    [self setPk_isIndicatorLoading:NO];
+    [self pk_setIndicatorLoading:NO];
     [self.pk_indicatorView stopAnimating];
     [self.pk_indicatorView removeFromSuperview];
     objc_setAssociatedObject(self, UIViewPKIndicatorLoadingViewKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+@end
+
+
+static void *UIViewPKTipToastShowingKey = &UIViewPKTipToastShowingKey;
+
+@implementation UIView (PKTipToast)
+
+- (BOOL)pk_isToastShowing {
+    return [objc_getAssociatedObject(self, UIViewPKTipToastShowingKey) boolValue];
+}
+
+- (void)pk_setToastShowing:(BOOL)pk_isToastShowing {
+    objc_setAssociatedObject(self, UIViewPKTipToastShowingKey, @(pk_isToastShowing), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)pk_showToastText:(NSString *)message {
+    return [self pk_showToastText:message delay:1.5];
+}
+
+- (void)pk_showToastText:(NSString *)message delay:(NSTimeInterval)delay {
+    if (self.pk_isToastShowing) return;
+    
+    if (!message || !message.length) return;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    UIEdgeInsets insets = UIEdgeInsetsMake(10, 20, 10, 20);
+    
+    UILabel *label = [UILabel new];
+    label.font = [UIFont systemFontOfSize:14];;
+    label.text = message;
+    label.textColor = [UIColor whiteColor];
+    label.numberOfLines = 0;
+    label.textAlignment = NSTextAlignmentCenter;
+    CGSize size = [label sizeThatFits:CGSizeMake(200, 200)];
+    size = CGSizeMake(ceil(size.width * scale) / scale, ceil(size.height * scale) / scale);
+    label.frame = CGRectMake(0, 0, size.width, size.height);
+    
+    UIView *hud = [UIView new];
+    hud.frame = CGRectMake(0, 0, size.width + insets.left + insets.right, size.height + insets.top + insets.bottom);
+    hud.backgroundColor = [UIColor darkGrayColor];
+    hud.clipsToBounds = YES;
+    hud.layer.cornerRadius = 2;
+    
+    label.center = CGPointMake(hud.frame.size.width / 2, hud.frame.size.height / 2);
+    [hud addSubview:label];
+    hud.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2 - 15);
+    hud.alpha = 0;
+    [self addSubview:hud];
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        hud.alpha = 1;
+    }];
+    
+    [self pk_setToastShowing:YES];
+    
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delay * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [UIView animateWithDuration:0.4 animations:^{
+            hud.alpha = 0;
+        } completion:^(BOOL finished) {
+            [hud removeFromSuperview];
+            [self pk_setToastShowing:NO];
+        }];
+    });
 }
 
 @end
