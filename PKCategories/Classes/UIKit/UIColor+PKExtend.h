@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSUInteger)pk_RGBAValue;
 - (NSUInteger)pk_RGBValue;
 
+/** 系统蓝 */
++ (UIColor *)pk_systemBlueColor;
+
 /** 随机色 */
 + (UIColor *)pk_randomColor;
 

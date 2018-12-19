@@ -55,6 +55,10 @@
     return 0;
 }
 
++ (UIColor *)pk_systemBlueColor {
+    return [self pk_colorWithHexString:@"007AFF"];
+}
+
 + (UIColor *)pk_randomColor {
     NSInteger aRedValue = arc4random() % 255;
     NSInteger aGreenValue = arc4random() % 255;
