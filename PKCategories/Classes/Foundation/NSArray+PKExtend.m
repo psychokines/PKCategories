@@ -31,6 +31,44 @@
     return [self subarrayWithRange:NSMakeRange(self.count - count, count)];
 }
 
+- (id)pk_objectGreaterThanObject:(id)anObject {
+    if ([self containsObject:anObject]) {
+        NSUInteger index = [self indexOfObject:anObject];
+        index += 1;
+        if (index < self.count) return self[index];
+        return self.firstObject;
+    }
+    return nil;
+}
+
+- (id)pk_objectLessThanObject:(id)anObject {
+    if ([self containsObject:anObject]) {
+        NSUInteger index = [self indexOfObject:anObject];
+        if (index) return self[index - 1];
+        return self.lastObject;
+    }
+    return nil;
+}
+
+- (id)pk_objectGreaterThanOrEqualToObject:(id)anObject {
+    if ([self containsObject:anObject]) {
+        NSUInteger index = [self indexOfObject:anObject];
+        index += 1;
+        if (index < self.count) return self[index];
+        return self.lastObject;
+    }
+    return nil;
+}
+
+- (id)pk_objectLessThanOrEqualToObject:(id)anObject {
+    if ([self containsObject:anObject]) {
+        NSUInteger index = [self indexOfObject:anObject];
+        if (index) return self[index - 1];
+        return self.firstObject;
+    }
+    return nil;
+}
+
 - (NSString *)pk_jsonStringEncoded {
     if ([NSJSONSerialization isValidJSONObject:self]) {
         NSError *error;

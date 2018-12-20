@@ -1,11 +1,11 @@
 PODS:
-  - PKCategories (0.2.1):
-    - PKCategories/Foundation (= 0.2.1)
-    - PKCategories/Other (= 0.2.1)
-    - PKCategories/UIKit (= 0.2.1)
-  - PKCategories/Foundation (0.2.1)
-  - PKCategories/Other (0.2.1)
-  - PKCategories/UIKit (0.2.1)
+  - PKCategories (0.2.2):
+    - PKCategories/Foundation (= 0.2.2)
+    - PKCategories/Other (= 0.2.2)
+    - PKCategories/UIKit (= 0.2.2)
+  - PKCategories/Foundation (0.2.2)
+  - PKCategories/Other (0.2.2)
+  - PKCategories/UIKit (0.2.2)
 
 DEPENDENCIES:
   - PKCategories (from `../`)
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  PKCategories: f7d4e2057ffafa0ce905af4f6b6ba299e2dbb246
+  PKCategories: 5e05066145135242c55c4075a6e78d31ac0814db
 
 PODFILE CHECKSUM: 3a3cfc15f3199ab17e928be3e320b1d27ca01e86
 

@@ -21,6 +21,18 @@ NS_ASSUME_NONNULL_BEGIN
 /** 获取数组中后count个元素(返回新数组) */
 - (nullable NSArray *)pk_backObjects:(NSUInteger)count;
 
+/** 获取anObject的后一个元素 (若anObject是末尾元素，则返回首元素) */
+- (nullable ObjectType)pk_objectGreaterThanObject:(ObjectType)anObject;
+
+/** 获取anObject的前一个元素 (若anObject是首元素，则返回末尾元素) */
+- (nullable ObjectType)pk_objectLessThanObject:(ObjectType)anObject;
+
+/** 获取anObject的后一个元素 (若anObject是末尾元素，则返回末尾元素) */
+- (nullable ObjectType)pk_objectGreaterThanOrEqualToObject:(ObjectType)anObject;
+
+/** 获取anObject的前一个元素 (若anObject是首元素，则返回首元素) */
+- (nullable ObjectType)pk_objectLessThanOrEqualToObject:(ObjectType)anObject;
+
 /**
  *  将数组转换成json字符串，json字符串显示一整行
  *  格式错误时返回nil
