@@ -124,14 +124,6 @@
     return obj;
 }
 
-- (void)pk_insertObjects:(NSArray *)objects atIndex:(NSUInteger)index {
-    if (index > self.count) return;
-    NSUInteger i = index;
-    for (id obj in objects) {
-        [self insertObject:obj atIndex:i++];
-    }
-}
-
 - (void)pk_shuffleAllObjects {
     for (NSUInteger i = self.count; i > 1; i--) {
         [self exchangeObjectAtIndex:(i - 1) withObjectAtIndex:arc4random_uniform((u_int32_t)i)];

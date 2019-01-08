@@ -21,11 +21,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    NSMutableArray *mud = [NSMutableArray array];
+    [mud removeLastObject];
+    
+    NSString *aText = nil;
+    [mud pk_addObject:aText];
+    
     NSString *string = [NSNumber pk_stringWithDigits:@(0.1256) keepPlaces:3];
     NSLog(@"string is: %@", string);
 
     NSString *string5 = [NSNumber pk_percentStringWithDoubleDigits:@(0.126)];
     NSLog(@"string5 is: %@", string5);
+    
+    UIBezierPath *ppath = [UIBezierPath pk_bezierPathWithText:@"圣诞快乐" font:[UIFont systemFontOfSize:27]];
+    [UIBezierPath pk_bezierPathWithText:@"圣诞快乐" font:[UIFont systemFontOfSize:27]];
+    [ppath pk_addRect:CGRectMake(100, 300, 200, 100)];
+    
+    CAShapeLayer *aLayer = [CAShapeLayer layer];
+    [self.view.layer addSublayer:aLayer];
+    aLayer.frame = CGRectMake(100, 300, 200, 100);
+    aLayer.backgroundColor = [UIColor redColor].CGColor;
+    aLayer.path = ppath.CGPath;
     
     [self test];
 }

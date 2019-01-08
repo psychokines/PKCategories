@@ -139,3 +139,31 @@
 }
 
 @end
+
+
+@implementation NSMutableArray (PKSafeAccess)
+
+- (void)pk_addObject:(id)anObject {
+    if (!anObject) return;
+    [self addObject:anObject];
+}
+
+- (void)pk_insertObject:(id)anObject atIndex:(NSUInteger)index {
+    if (index > self.count) return;
+    [self insertObject:anObject atIndex:index];
+}
+
+- (void)pk_insertObjects:(NSArray *)objects atIndex:(NSUInteger)index {
+    if (index > self.count) return;
+    NSUInteger i = index;
+    for (id obj in objects) {
+        [self insertObject:obj atIndex:i++];
+    }
+}
+
+- (void)pk_appendObjects:(NSArray *)objects {
+    if (!objects) return;
+    [self addObjectsFromArray:objects];
+}
+
+@end

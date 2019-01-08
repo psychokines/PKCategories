@@ -37,6 +37,7 @@
 #import "UIGestureRecognizer+PKExtend.h"
 #import "UIBarButtonItem+PKExtend.h"
 #import "UINavigationBar+PKExtend.h"
+#import "UIBezierPath+PKExtend.h"
 #import "CALayer+PKExtend.h"
 
 #endif /* PKCategories_h */

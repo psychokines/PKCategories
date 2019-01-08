@@ -82,8 +82,9 @@
 
 + (NSString *)pk_percentStringWithTidyDigits:(NSNumber *)number {
     /**
+     [NSString stringWithFormat:@"%@", number];
      [NSNumberFormatter localizedStringFromNumber:number numberStyle:NSNumberFormatterPercentStyle];
-     该方法四舍五入不准确，有偶数舍，奇数入问题，结果如下：
+     系统方法四舍五入不准确，有偶数舍，奇数入问题，结果如下：
      0.125 => 12%
      0.135 => 14%
     */

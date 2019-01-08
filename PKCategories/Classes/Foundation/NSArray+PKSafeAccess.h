@@ -51,4 +51,28 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGRect)pk_CGRectAtIndex:(NSUInteger)index;
 
 @end
+
+
+@interface NSMutableArray<ObjectType> (PKSafeAccess)
+
+- (void)pk_addObject:(ObjectType)anObject;
+
+/** 根据下标插入一个元素到当前数组中 */
+- (void)pk_insertObject:(ObjectType)anObject atIndex:(NSUInteger)index;
+
+/**
+ *  根据下标插入另一个数组中的所有对象到当前数组
+ *
+ *  @param objects 数组对象
+ *  @param index   指定下标
+ *
+ *  (index等于self.count时，添加在其末尾)
+ */
+- (void)pk_insertObjects:(NSArray *)objects atIndex:(NSUInteger)index;
+
+/** 将某一数组中的元素依次添加到当前数组中 */
+- (void)pk_appendObjects:(NSArray *)objects;
+
+@end
+
 NS_ASSUME_NONNULL_END

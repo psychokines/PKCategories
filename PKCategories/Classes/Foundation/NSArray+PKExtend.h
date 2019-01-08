@@ -67,16 +67,6 @@ NS_ASSUME_NONNULL_BEGIN
 /** 返回数组中的最后一个对象，并将其从原数组中删除 */
 - (nullable ObjectType)pk_popLastObject;
 
-/**
- *  根据下标插入另一个数组中的所有对象到当前数组
- *
- *  @param objects 数组对象
- *  @param index   指定下标
- *
- *  (index等于self.count时，添加在其末尾)
- */
-- (void)pk_insertObjects:(NSArray *)objects atIndex:(NSUInteger)index;
-
 /** 随机打乱数组 */
 - (void)pk_shuffleAllObjects;
 
