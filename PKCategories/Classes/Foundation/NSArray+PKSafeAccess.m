@@ -17,8 +17,14 @@
     return nil;
 }
 
+- (id)pk_objectAtIndex:(NSUInteger)index defaultObj:(id)defObj {
+    if (index < self.count) {
+        return [self objectAtIndex:index];
+    }
+    return defObj;
+}
+
 - (NSUInteger)pk_indexOfObject:(id)anObject {
-    NSParameterAssert(self.count);
     if ([self containsObject:anObject]) {
         return [self indexOfObject:anObject];
     }
@@ -146,6 +152,13 @@
 - (void)pk_addObject:(id)anObject {
     if (!anObject) return;
     [self addObject:anObject];
+}
+
+- (void)pk_addObject:(id)anObject defaultObj:(id)aObj {
+    if (anObject) {
+        return [self addObject:anObject];
+    }
+    return [self addObject:aObj];
 }
 
 - (void)pk_insertObject:(id)anObject atIndex:(NSUInteger)index {
