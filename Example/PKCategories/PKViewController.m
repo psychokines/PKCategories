@@ -21,28 +21,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    NSMutableArray *mud = [NSMutableArray array];
-    [mud removeLastObject];
+    draw New
 
-    NSString *aText = nil;
-    [mud pk_addObject:aText];
-    // 备选值
-    [mud pk_addObject:[mud pk_objectAtIndex:0] defaultObj:@"def"];
+//    NSString *aText = nil;
+//    [mud pk_addObject:aText];
+//    // 备选值
+//    [mud pk_addObject:[mud pk_objectAtIndex:0] defaultObj:@"def"];
 
-    NSString *string = [NSNumber pk_stringWithDigits:@(0.1256) keepPlaces:3];
-    NSLog(@"string is: %@", string);
+//    NSString *string = [NSNumber pk_stringWithDigits:@(0.1256) keepPlaces:3];
+//    NSLog(@"string is: %@", string);
+//
+//    NSString *string5 = [NSNumber pk_percentStringWithDoubleDigits:@(0.126)];
+//    NSLog(@"string5 is: %@", string5);
 
-    NSString *string5 = [NSNumber pk_percentStringWithDoubleDigits:@(0.126)];
-    NSLog(@"string5 is: %@", string5);
-
-    UIBezierPath *ppath = [UIBezierPath bezierPath];
-    [ppath pk_addRect:CGRectMake(100, 300, 200, 100)];
-
-    CAShapeLayer *aLayer = [CAShapeLayer layer];
-    [self.view.layer addSublayer:aLayer];
-    aLayer.frame = CGRectMake(100, 300, 200, 100);
-    aLayer.backgroundColor = [UIColor redColor].CGColor;
-    aLayer.path = ppath.CGPath;
+//    UIBezierPath *ppath = [UIBezierPath bezierPath];
+//    [ppath pk_addRect:CGRectMake(100, 300, 200, 100)];
+//
+//    CAShapeLayer *aLayer = [CAShapeLayer layer];
+//    [self.view.layer addSublayer:aLayer];
+//    aLayer.frame = CGRectMake(100, 300, 200, 100);
+//    aLayer.backgroundColor = [UIColor redColor].CGColor;
+//    aLayer.path = ppath.CGPath;
 
     [self test];
 }

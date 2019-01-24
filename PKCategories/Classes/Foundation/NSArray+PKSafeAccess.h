@@ -79,6 +79,12 @@ NS_ASSUME_NONNULL_BEGIN
 /** 将某一数组中的元素依次添加到当前数组中 */
 - (void)pk_appendObjects:(NSArray *)objects;
 
+/** 根据下标删除数组中对应的元素 */
+- (void)pk_removeObjectAtIndex:(NSUInteger)index;
+
+/** 根据范围删除数组中对应的元素 */
+- (void)pk_removeObjectsInRange:(NSRange)range;
+
 @end
 
 NS_ASSUME_NONNULL_END

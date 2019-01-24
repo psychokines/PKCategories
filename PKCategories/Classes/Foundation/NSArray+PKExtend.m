@@ -17,14 +17,14 @@
     return nil;
 }
 
-- (NSArray *)pk_frontObjects:(NSUInteger)count {
+- (NSArray *)pk_subarrayWithFrontCount:(NSUInteger)count {
     if (count > self.count) {
         return nil;
     }
     return [self subarrayWithRange:NSMakeRange(0, count)];
 }
 
-- (NSArray *)pk_backObjects:(NSUInteger)count {
+- (NSArray *)pk_subarrayWithBackCount:(NSUInteger)count {
     if (count > self.count) {
         return nil;
     }

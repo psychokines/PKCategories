@@ -16,10 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable ObjectType)pk_randomObject;
 
 /** 获取数组中前count个元素(返回新数组) */
-- (nullable NSArray *)pk_frontObjects:(NSUInteger)count;
+- (nullable NSArray *)pk_subarrayWithFrontCount:(NSUInteger)count;
 
 /** 获取数组中后count个元素(返回新数组) */
-- (nullable NSArray *)pk_backObjects:(NSUInteger)count;
+- (nullable NSArray *)pk_subarrayWithBackCount:(NSUInteger)count;
 
 /** 获取anObject的后一个元素 (若anObject是末尾元素，则返回首元素) */
 - (nullable ObjectType)pk_objectGreaterThanObject:(ObjectType)anObject;
