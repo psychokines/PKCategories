@@ -5,9 +5,6 @@
 //  Created by zhanghao on 2018/10/21.
 //  Copyright © 2018年 PsychokinesisTeam. All rights reserved.
 //
-///=============================================================================
-/// @brief 该类计算时间默认的时区均为北京时间 => @"Asia/Beijing"
-///=============================================================================
 
 #import <Foundation/Foundation.h>
 

@@ -31,7 +31,7 @@
         formatter.dateStyle = NSDateFormatterMediumStyle;
         formatter.timeStyle = NSDateFormatterShortStyle;
         formatter.locale = [NSLocale currentLocale];
-        formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Beijing"];
+        formatter.timeZone = [NSTimeZone systemTimeZone];
     });
     return formatter;
 }

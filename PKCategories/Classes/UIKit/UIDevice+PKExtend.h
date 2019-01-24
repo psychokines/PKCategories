@@ -12,6 +12,31 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIDevice (PKExtend)
 
+/**
+ * 判断当前屏幕是否为iphone4/4s尺寸屏
+ *
+ * @return BOOL类型YES or NO.
+ */
+- (BOOL)pk_isIPhone4;
+
+/** 判断当前屏幕是否为iphone5/5c/5s/SE尺寸屏 */
+- (BOOL)pk_isIPhone5;
+
+/** 判断当前屏幕是否为iphone6/6s/7/8尺寸屏 */
+- (BOOL)pk_isIPhone6;
+
+/** 判断当前屏幕是否为iphone6p/6sp/7p/8p尺寸屏 */
+- (BOOL)pk_isIPhone6p;
+
+/** 判断当前屏幕是否为iphoneX/XS尺寸屏 */
+- (BOOL)pk_isIPhoneX;
+
+/** 判断当前屏幕是否为iPhoneXR尺寸屏 */
+- (BOOL)pk_isIPhoneXR;
+
+/** 判断当前屏幕是否为iPhoneXSMax尺寸屏 */
+- (BOOL)pk_isIPhoneXsMax;
+
 /** 获取当前设备的系统版本 */
 @property (nonatomic, assign, readonly, class) double pk_systemVersion;
 
