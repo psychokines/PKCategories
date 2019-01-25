@@ -21,7 +21,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    draw New
+//    draw New
 
 //    NSString *aText = nil;
 //    [mud pk_addObject:aText];
@@ -48,13 +48,12 @@
 
 - (void)test {
     UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    aButton.frame = CGRectMake(50, 200, 100, 100);
+    aButton.frame = CGRectMake(50, 200, 100, 50);
     aButton.backgroundColor = [UIColor orangeColor];
     [aButton setTitle:@"button" forState:UIControlStateNormal];
     [aButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:aButton];
     
-    //    [aButton pk_badgeOffset:UIOffsetMake(50, 0)];
     [aButton pk_showBadgeWithText:@"新功能"];
     aButton.pk_badgeLabel.font = [UIFont systemFontOfSize:9];
     

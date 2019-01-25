@@ -240,7 +240,7 @@ static void *UIViewAssociatedPKBadgeLabelKey = &UIViewAssociatedPKBadgeLabelKey;
         self.pk_badgeLabel.frame = [self _badgeDefaultRect];
         CGFloat _width = [self.pk_badgeLabel sizeThatFits:CGSizeMake(MAXFLOAT, self.pk_badgeLabel.frame.size.height)].width;
         CGRect originRect = self.pk_badgeLabel.frame;
-        originRect.size.width = _width + 8;
+        originRect.size.width = _width + 3;
         if (originRect.size.height > originRect.size.width) {
             originRect.size.width = originRect.size.height; // 使宽度>=高度
         }
