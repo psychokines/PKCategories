@@ -179,7 +179,7 @@
     [self addObjectsFromArray:objects];
 }
 
-- (void)pk_removeObjectAtIndex:(NSUInteger)index {
+- (void)pk_removeObjectAtIndex:(NSInteger)index {
     if (!self.count) return;
     if (index < 0 || index >= self.count) return;
     [self removeObjectAtIndex:index];
