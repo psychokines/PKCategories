@@ -28,6 +28,14 @@
     return value;
 }
 
+- (id)pk_objectForKey:(id)aKey defaultObj:(id)defObj {
+    id value = [self pk_objectForKey:aKey];
+    if (value) {
+        return value;
+    }
+    return defObj;
+}
+
 - (NSArray *)pk_arrayForKey:(id)aKey {
     id value = [self pk_objectForKey:aKey];
     if ([value isKindOfClass:[NSArray class]]) {

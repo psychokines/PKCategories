@@ -21,6 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable ObjectType)pk_objectForKey:(KeyType)aKey;
 
+/**
+ *  当传入Key为nil或者取出的object为nil时，则返回默认值defObj
+ */
+- (ObjectType)pk_objectForKey:(KeyType)aKey defaultObj:(id)defObj;;
+
 - (nullable NSArray *)pk_arrayForKey:(KeyType)aKey;
 
 - (nullable NSDictionary *)pk_dictionaryForKey:(KeyType)aKey;
