@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * @brief 通过NSNumericSearch比较字符串大小 (按照字符串里的数字为依据，算出顺序，如 2.9.txt < 7.txt < 9.25.txt)
  *
- * @return YES/NO (常用于版本号比较，当self > other串时返回YES，反之为NO)
+ * @return YES/NO (常用于版本号比较，当self > other时返回YES，反之为NO)
  */
 - (BOOL)pk_isGreaterThanByNumericSearchCompare:(NSString *)other;
 

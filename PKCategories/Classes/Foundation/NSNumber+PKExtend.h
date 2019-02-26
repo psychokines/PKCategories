@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)pk_isEqualZeroWithMinimumError:(CGFloat)minimumError;
 
 /**
- *  @brief 判断浮点数对象是否为0，最小误差为0.01 (小于最小误差即视为0值)
+ *  @brief 判断浮点数对象是否为0，最小误差为0.01 (小于最小误差就视为0值)
  *
  *  @return 小于0.01返回YES，反之返回NO
  */

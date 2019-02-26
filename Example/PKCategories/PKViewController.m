@@ -19,9 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
-//    draw New
+	// Do any additional setup after loading the view, typically from a nib.
 
 //    NSString *aText = nil;
 //    [mud pk_addObject:aText];

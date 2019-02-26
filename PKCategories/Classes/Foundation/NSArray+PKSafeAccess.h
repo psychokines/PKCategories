@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable ObjectType)pk_objectAtIndex:(NSUInteger)index;
 
-/** 同上方法，当根据下标获取到nil时，返回一个默认值 */
+/** 同上方法，根据下标获取值为nil时，返回默认值defObj */
 - (ObjectType)pk_objectAtIndex:(NSUInteger)index defaultObj:(id)defObj;
 
 /**

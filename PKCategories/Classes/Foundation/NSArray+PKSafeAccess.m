@@ -18,8 +18,9 @@
 }
 
 - (id)pk_objectAtIndex:(NSUInteger)index defaultObj:(id)defObj {
-    if (index < self.count) {
-        return [self objectAtIndex:index];
+    id value = [self pk_objectAtIndex:index];
+    if (value) {
+        return value;
     }
     return defObj;
 }

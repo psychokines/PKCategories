@@ -37,6 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 判断当前屏幕是否为iPhoneXSMax尺寸屏 */
 - (BOOL)pk_isIPhoneXsMax;
 
+/** 判断当前设备是否为刘海屏 (iphoneX/XS/XR/XSMax) */
+- (BOOL)pk_isBangsScreen;
+
 /** 获取当前设备的系统版本 */
 @property (nonatomic, assign, readonly, class) double pk_systemVersion;
 

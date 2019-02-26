@@ -7,6 +7,7 @@
 //
 
 #import "UIDevice+PKExtend.h"
+#import "UIApplication+PKExtend.h"
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 #include <sys/sysctl.h>
@@ -108,6 +109,13 @@ typedef NS_ENUM(NSUInteger, PKScreenType) {
 
 - (BOOL)pk_isIPhoneXsMax {
     return [self pk_screenType] == PKScreenTypeIphoneXSMax;
+}
+
+- (BOOL)pk_isBangsScreen {
+    if (@available(iOS 11.0, *)) {
+        return ([UIApplication.sharedApplication pk_frontWindow].safeAreaInsets.bottom > 0.0);
+    }
+    return NO;
 }
 
 + (double)pk_systemVersion {

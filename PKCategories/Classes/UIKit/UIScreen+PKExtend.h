@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (class, nonatomic, assign, readonly) CGFloat pk_width;
 @property (class, nonatomic, assign, readonly) CGFloat pk_height;
 @property (class, nonatomic, assign, readonly) CGSize pk_swapSize;
+@property (class, nonatomic, assign, readonly) UIEdgeInsets pk_safeInsets; // 竖屏模式下
 
 @end
 

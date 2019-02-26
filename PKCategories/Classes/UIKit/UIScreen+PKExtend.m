@@ -7,6 +7,7 @@
 //
 
 #import "UIScreen+PKExtend.h"
+#import "UIApplication+PKExtend.h"
 
 @implementation UIScreen (PKExtend)
 
@@ -39,6 +40,13 @@
 
 + (CGSize)pk_swapSize {
     return CGSizeMake(self.pk_size.height, self.pk_size.width);
+}
+
++ (UIEdgeInsets)pk_safeInsets {
+    if (@available(iOS 11.0, *)) {
+        return [UIApplication.sharedApplication pk_frontWindow].safeAreaInsets;
+    }
+    return UIEdgeInsetsMake(20, 0, 0, 0);
 }
 
 @end
