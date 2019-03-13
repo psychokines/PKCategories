@@ -58,6 +58,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSMutableArray<ObjectType> (PKSafeAccess)
 
+-(void)pk_addCGPoint:(CGPoint)p;
+
+-(void)pk_addCGSize:(CGSize)s;
+
+-(void)pk_addCGRect:(CGRect)r;
+
 - (void)pk_addObject:(ObjectType)anObject;
 
 /** 添加元素到数组中，当anObject为nil时则添加备选值aObj */

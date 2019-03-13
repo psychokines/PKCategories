@@ -123,7 +123,9 @@
 
 - (CGPoint)pk_CGPointAtIndex:(NSUInteger)index {
     id value = [self pk_objectAtIndex:index];
-    if ([value isKindOfClass:[NSString class]]) {
+    if ([value isKindOfClass:[NSValue class]]) {
+        return [value CGPointValue];
+    } else if ([value isKindOfClass:[NSString class]]) {
         return CGPointFromString(value);
     }
     return CGPointZero;
@@ -131,7 +133,9 @@
 
 - (CGSize)pk_CGSizeAtIndex:(NSUInteger)index {
     id value = [self pk_objectAtIndex:index];
-    if ([value isKindOfClass:[NSString class]]) {
+    if ([value isKindOfClass:[NSValue class]]) {
+        return [value CGSizeValue];
+    } else if ([value isKindOfClass:[NSString class]]) {
         return CGSizeFromString(value);
     }
     return CGSizeZero;
@@ -139,7 +143,9 @@
 
 - (CGRect)pk_CGRectAtIndex:(NSUInteger)index {
     id value = [self pk_objectAtIndex:index];
-    if ([value isKindOfClass:[NSString class]]) {
+    if ([value isKindOfClass:[NSValue class]]) {
+        return [value CGRectValue];
+    } else if ([value isKindOfClass:[NSString class]]) {
         return CGRectFromString(value);
     }
     return CGRectZero;
@@ -149,6 +155,18 @@
 
 
 @implementation NSMutableArray (PKSafeAccess)
+
+- (void)pk_addCGPoint:(CGPoint)p {
+    [self addObject:[NSValue valueWithCGPoint:p]];
+}
+
+- (void)pk_addCGSize:(CGSize)s {
+    [self addObject:[NSValue valueWithCGSize:s]];
+}
+
+- (void)pk_addCGRect:(CGRect)r {
+    [self addObject:[NSValue valueWithCGRect:r]];
+}
 
 - (void)pk_addObject:(id)anObject {
     if (!anObject) return;

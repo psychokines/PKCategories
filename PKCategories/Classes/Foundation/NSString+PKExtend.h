@@ -48,6 +48,14 @@ NS_ASSUME_NONNULL_BEGIN
 /** 仅去除字符串中的换行符和首尾空白符 */
 - (NSString *)pk_trimmingNewlineAndWhitespace;
 
+/**
+ * @brief 去除字符串中的特殊字符
+ *
+ * @param aString  需要去除的字符集，如 @"^• -\|~＜＞$€'@#$"
+ * @return 返回过滤后的字符串
+ */
+- (NSString *)pk_trimmingWithCharactersInString:(NSString *)aString;
+
 /** 将特殊URL字符串编码转换 (如包含中文的URL编码) */
 - (nullable NSString *)pk_stringByURLQueryAllowedEncode;
 

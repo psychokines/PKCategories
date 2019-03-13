@@ -96,15 +96,33 @@
 }
 
 - (CGPoint)pk_CGPointForKey:(id)aKey {
-    return CGPointFromString([self pk_stringForKey:aKey]);
+    id value = [self pk_objectForKey:aKey];
+    if ([value isKindOfClass:[NSValue class]]) {
+        return [value CGPointValue];
+    } else if ([value isKindOfClass:[NSString class]]) {
+        return CGPointFromString(value);
+    }
+    return CGPointZero;
 }
 
 - (CGSize)pk_CGSizeForKey:(id)aKey {
-    return CGSizeFromString([self pk_stringForKey:aKey]);
+    id value = [self pk_objectForKey:aKey];
+    if ([value isKindOfClass:[NSValue class]]) {
+        return [value CGSizeValue];
+    } else if ([value isKindOfClass:[NSString class]]) {
+        return CGSizeFromString(value);
+    }
+    return CGSizeZero;
 }
 
 - (CGRect)pk_CGRectForKey:(id)aKey {
-    return CGRectFromString([self pk_stringForKey:aKey]);
+    id value = [self pk_objectForKey:aKey];
+    if ([value isKindOfClass:[NSValue class]]) {
+        return [value CGRectValue];
+    } else if ([value isKindOfClass:[NSString class]]) {
+        return CGRectFromString(value);
+    }
+    return CGRectZero;
 }
 @end
 
@@ -117,15 +135,15 @@
 }
 
 - (void)pk_setCGPoint:(CGPoint)p forKey:(id<NSCopying>)aKey {
-    self[aKey] = NSStringFromCGPoint(p);
+    self[aKey] = [NSValue valueWithCGPoint:p];
 }
 
 - (void)pk_setCGSize:(CGSize)s forKey:(id<NSCopying>)aKey {
-    self[aKey] = NSStringFromCGSize(s);
+    self[aKey] = [NSValue valueWithCGSize:s];
 }
 
 - (void)pk_setCGRect:(CGRect)r forKey:(id<NSCopying>)aKey {
-    self[aKey] = NSStringFromCGRect(r);
+    self[aKey] = [NSValue valueWithCGRect:r];
 }
 
 @end

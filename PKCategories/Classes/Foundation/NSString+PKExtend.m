@@ -62,6 +62,11 @@
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+- (NSString *)pk_trimmingWithCharactersInString:(NSString *)aString {
+    NSCharacterSet *set = [NSCharacterSet characterSetWithCharactersInString:aString];
+    return [[self componentsSeparatedByCharactersInSet:set] componentsJoinedByString:@""];
+}
+
 - (NSString *)pk_stringByURLQueryAllowedEncode {
     return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 }
