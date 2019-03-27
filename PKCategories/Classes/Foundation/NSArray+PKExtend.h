@@ -12,6 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSArray<ObjectType> (PKExtend)
 
+/** 判断索引在数组中是否有效 */
+- (BOOL)pk_containsIndex:(NSInteger)index;
+
 /** 获取一个位于随机索引值的对象 */
 - (nullable ObjectType)pk_randomObject;
 
@@ -32,6 +35,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 获取anObject的前一个元素 (若anObject是首元素，则返回首元素) */
 - (nullable ObjectType)pk_objectLessThanOrEqualToObject:(ObjectType)anObject;
+
+/** 映射操作，可以对数组中的每一个元素做一次处理，返回处理后的数据 */
+- (NSArray<id> *)pk_map:(id (NS_NOESCAPE ^)(ObjectType obj))block;
+
+/** 过滤操作，可以对数组中的元素按照某种规则进行一次过滤 */
+- (NSArray<ObjectType> *)pk_filer:(BOOL (NS_NOESCAPE ^)(ObjectType obj))block;
 
 /**
  *  将数组转换成json字符串，json字符串显示一整行

@@ -29,7 +29,7 @@
     dispatch_once(&onceToken, ^{
         formatter = [[NSDateFormatter alloc] init];
         formatter.dateStyle = NSDateFormatterMediumStyle;
-        formatter.timeStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
         formatter.locale = [NSLocale currentLocale];
         formatter.timeZone = [NSTimeZone systemTimeZone];
     });

@@ -10,6 +10,10 @@
 
 @implementation NSArray (PKExtend)
 
+- (BOOL)pk_containsIndex:(NSInteger)index {
+    return (self.count && index < self.count && index >= 0);
+}
+
 - (id)pk_randomObject {
     if (self.count) {
         return self[arc4random_uniform((u_int32_t)self.count)];
@@ -67,6 +71,22 @@
         return self.firstObject;
     }
     return nil;
+}
+
+- (NSArray<id> *)pk_map:(id _Nonnull (^NS_NOESCAPE)(id _Nonnull))block {
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:self.count];
+    for (id obj in self) {
+        [array addObject:block(obj)];
+    }
+    return array.copy;
+}
+
+- (NSArray *)pk_filer:(BOOL (^NS_NOESCAPE)(id _Nonnull))block {
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:self.count];
+    for (id obj in self) {
+        if (block(obj)) [array addObject:obj];
+    }
+    return array.copy;
 }
 
 - (NSString *)pk_jsonStringEncoded {

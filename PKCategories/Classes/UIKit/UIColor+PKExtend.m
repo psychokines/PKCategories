@@ -56,7 +56,7 @@
 }
 
 + (UIColor *)pk_systemBlueColor {
-    return [self pk_colorWithHexString:@"007AFF"];
+    return [UIColor colorWithRed:0 / 255. green:122 / 255. blue:255 / 255. alpha:1];
 }
 
 + (UIColor *)pk_randomColor {

@@ -22,6 +22,22 @@
     [self.view pk_beginIndicatorLoading];
     
     [self.view pk_showToastText:@"加载失败" delay:2];
+    
+    NSArray<NSString *> *array = @[@"~~~~~~~~~~", @"abc", @"abcdef", @"zhang-zhang-zheng"];
+    NSArray *mapArray = [array pk_map:^id _Nonnull(NSString * _Nonnull obj) {
+        return [obj stringByAppendingString:@"666"];
+    }];
+    NSLog(@"mapArray is: %@", mapArray);
+    
+    NSArray *filerArray = [array pk_filer:^BOOL(NSString * _Nonnull obj) {
+        return obj.length < 5;
+    }];
+    NSLog(@"filerArray is: %@", filerArray);
+    
+    NSInteger lastLength = [array pk_filer:^BOOL(NSString * _Nonnull obj) {
+        return obj.length > 3;
+    }].lastObject.length;
+    NSLog(@"lastLength is: %ld", (long)lastLength);
 }
 
 /*
