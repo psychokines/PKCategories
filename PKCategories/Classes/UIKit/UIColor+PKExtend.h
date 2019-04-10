@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 系统蓝 */
 + (UIColor *)pk_systemBlueColor;
 
+/** 分隔线颜色 */
++ (UIColor *)pk_separatorLineColor;
+
 /** 随机色 */
 + (UIColor *)pk_randomColor;
 

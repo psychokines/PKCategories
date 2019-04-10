@@ -59,6 +59,10 @@
     return [UIColor colorWithRed:0 / 255. green:122 / 255. blue:255 / 255. alpha:1];
 }
 
++ (UIColor *)pk_separatorLineColor {
+    return [UIColor colorWithRed:220 / 255. green:220 / 255. blue:220 / 255. alpha:1];
+}
+
 + (UIColor *)pk_randomColor {
     NSInteger aRedValue = arc4random() % 255;
     NSInteger aGreenValue = arc4random() % 255;
