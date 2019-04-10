@@ -47,13 +47,15 @@
 - (void)test {
     UIButton *aButton = [UIButton buttonWithType:UIButtonTypeCustom];
     aButton.frame = CGRectMake(50, 200, 100, 50);
-    aButton.backgroundColor = [UIColor orangeColor];
+    aButton.backgroundColor = [UIColor whiteColor];
+    [aButton setTitleColor:[UIColor pk_systemBlueColor] forState:UIControlStateNormal];
     [aButton setTitle:@"button" forState:UIControlStateNormal];
     [aButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:aButton];
     
     [aButton pk_showBadgeWithText:@"新功能"];
     aButton.pk_badgeLabel.font = [UIFont systemFontOfSize:9];
+    [aButton.layer pk_addShadow:[UIColor grayColor] opacity:0.5 radius:5];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage pk_imageWithColor:[UIColor pk_randomColor]] forBarMetrics:UIBarMetricsDefault];
 }

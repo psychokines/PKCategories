@@ -177,7 +177,9 @@
 }
 
 - (void)pk_addDefaultEdgeLineByPosition:(PKEdgeLinePosition)position {
-    return [self pk_addEdgeLineWidth:1 / [UIScreen mainScreen].scale color:[UIColor grayColor] byEdgePosition:position];
+    return [self pk_addEdgeLineWidth:1 / [UIScreen mainScreen].scale
+                               color:[UIColor colorWithRed:220 / 255. green:220 / 255. blue:220 / 255. alpha:1]
+                      byEdgePosition:position];
 }
 
 @end

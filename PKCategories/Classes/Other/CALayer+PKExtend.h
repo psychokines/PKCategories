@@ -37,7 +37,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)pk_removeAllSublayers;
 
 /** 为图层添加阴影效果 */
-- (void)pk_addShadow:(UIColor*)color offset:(CGSize)offset radius:(CGFloat)radius;
+- (void)pk_addShadow:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius;
+
+/** 为图层周围添加阴影效果 */
+- (void)pk_addShadow:(UIColor *)color opacity:(CGFloat)opacity radius:(CGFloat)radius;
 
 @end
 

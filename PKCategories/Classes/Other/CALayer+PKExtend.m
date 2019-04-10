@@ -143,13 +143,38 @@
     }
 }
 
-- (void)pk_addShadow:(UIColor*)color offset:(CGSize)offset radius:(CGFloat)radius {
+- (void)pk_addShadow:(UIColor *)color offset:(CGSize)offset radius:(CGFloat)radius {
     self.shadowColor = color.CGColor;
     self.shadowOffset = offset;
     self.shadowRadius = radius;
     self.shadowOpacity = 1;
     self.shouldRasterize = YES;
     self.rasterizationScale = [UIScreen mainScreen].scale;
+}
+
+- (void)pk_addShadow:(UIColor *)color opacity:(CGFloat)opacity radius:(CGFloat)radius {
+    self.shadowColor = color.CGColor;
+    self.shadowOffset = CGSizeMake(0, 0);
+    self.shadowRadius = radius;
+    self.shadowOpacity = opacity;
+    
+    CGFloat width = self.bounds.size.width;
+    CGFloat height = self.bounds.size.height;
+    CGFloat x = self.bounds.origin.x;
+    CGFloat y = self.bounds.origin.y;
+    CGFloat offset = 0.f;
+    
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    CGPoint topLeft = self.bounds.origin;
+    CGPoint topRight = CGPointMake(x + width, y);
+    CGPoint bottomRight = CGPointMake(x + width, y + height);
+    CGPoint bottomLeft = CGPointMake(x, y + height);
+    [path moveToPoint:CGPointMake(topLeft.x - offset, topLeft.y - offset)];
+    [path addLineToPoint:CGPointMake(topRight.x + offset, topRight.y - offset)];
+    [path addLineToPoint:CGPointMake(bottomRight.x + offset, bottomRight.y + offset)];
+    [path addLineToPoint:CGPointMake(bottomLeft.x - offset, bottomLeft.y + offset)];
+    [path addLineToPoint:CGPointMake(topLeft.x - offset, topLeft.y - offset)];
+    self.shadowPath = path.CGPath;
 }
 
 @end
