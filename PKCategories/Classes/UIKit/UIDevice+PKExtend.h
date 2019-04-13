@@ -61,6 +61,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 判断当前设置是否有摄像头 */
 @property (nonatomic, assign, class, readonly) BOOL pk_hasCamera;
 
+/** 获取手机机型对应名称 */
+@property (nonatomic, readonly, class, nullable) NSString *pk_machineName;
+
 /** 获取手机内存总量 (单位：字节数) */
 + (NSUInteger)pk_totalMemoryBytes;
 

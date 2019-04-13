@@ -157,6 +157,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSComparisonResult)pk_compare:(NSString *)dateString other:(NSString *)other formatter:(NSString *)dateFormat;
 
+/**
+ *  @brief 任意时区转换为本地时间
+ *
+ *  @param abbreviation 时区名称
+ *
+ *  @return 本地时间
+ */
+- (NSDate *)pk_localizationDateTimeZone:(NSString *)abbreviation;
+
 @end
 
 

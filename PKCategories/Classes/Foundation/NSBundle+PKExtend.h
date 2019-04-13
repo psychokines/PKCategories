@@ -27,6 +27,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 获取应用程序的名称 */
 @property (nullable, nonatomic, class, readonly) NSString *pk_appDisplayName;
 
+/** 从mainbundle路径下读取文件 */
++ (nullable NSBundle *)pk_mainBundleWithName:(NSString *)fileName;
+
 @end
 
 NS_ASSUME_NONNULL_END

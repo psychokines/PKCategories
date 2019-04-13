@@ -273,6 +273,16 @@
     return [aDate compare:bDate];;
 }
 
+- (NSDate *)pk_localizationDateTimeZone:(NSString *)abbreviation {
+    NSTimeZone *sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:abbreviation];// UTC或GMT
+    NSTimeZone *destinationTimeZone = [NSTimeZone localTimeZone];
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:self];
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:self];
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    NSDate *destinationDateNow = [[NSDate alloc] initWithTimeInterval:interval sinceDate:self];
+    return destinationDateNow;
+}
+
 @end
 
 

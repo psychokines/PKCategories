@@ -30,4 +30,12 @@
     return [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
 }
 
++ (NSBundle *)pk_mainBundleWithName:(NSString *)fileName {
+    NSString *path = [[NSBundle.mainBundle resourcePath] stringByAppendingPathComponent:fileName];
+    if ([NSFileManager.defaultManager fileExistsAtPath:path]) {
+        return [NSBundle bundleWithPath:path];
+    }
+    return nil;
+}
+
 @end
