@@ -150,10 +150,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)pk_isValidByRegex:(NSString *)regex;
 
 /** 验证是否为纯数字 */
-- (BOOL)pk_isPureNumber;
+- (BOOL)pk_isAllNumbers;
 
 /** 验证是否纯汉字 */
-- (BOOL)pk_isPureChineseCharacters;
+- (BOOL)pk_isAllChineseCharacters;
 
 /** 匹配邮箱格式是否正确 */
 - (BOOL)pk_isValidEmailAddress;

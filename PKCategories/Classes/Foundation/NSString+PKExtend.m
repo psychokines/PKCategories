@@ -164,13 +164,13 @@
     return [predicate evaluateWithObject:self];
 }
 
-- (BOOL)pk_isPureNumber {
+- (BOOL)pk_isAllNumbers {
     NSString *regex = @"(^[0-9]*$)";
     return [self pk_validateRegex:regex];
 }
 
-- (BOOL)pk_isPureChineseCharacters {
-    NSString *chineseRegex = @"^[0-8]\\d{5}(?!\\d)$";
+- (BOOL)pk_isAllChineseCharacters {
+    NSString *chineseRegex = @"[\u4e00-\u9fa5]+";
     return [self pk_validateRegex:chineseRegex];
 }
 

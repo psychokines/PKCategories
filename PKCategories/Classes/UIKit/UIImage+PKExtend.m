@@ -12,19 +12,59 @@
 @implementation UIImage (PKExtend)
 
 + (UIImage *)pk_imageWithColor:(UIColor *)color {
-    return [self pk_imageWithColor:color size:CGSizeMake(1.f, 1.f)];
+    return [self pk_imageWithColor:color size:1];
 }
 
-+ (UIImage *)pk_imageWithColor:(UIColor *)color size:(CGSize)size {
-    if (!color || size.width <= 0 || size.height <= 0) return nil;
-    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
-    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
++ (UIImage *)pk_imageWithColor:(UIColor *)color size:(CGFloat)size {
+    if (!color || size <= 0) return nil;
+    
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(size, size), NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, color.CGColor);
-    CGContextFillRect(context, rect);
+    CGContextFillRect(context, CGRectMake(0, 0, size, size));
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
++ (UIImage *)pk_imageWithString:(NSString *)aString fontSize:(CGFloat)size margin:(CGFloat)margin {
+    if (!aString || size <= 0) return nil;
+    
+    size *= [UIScreen mainScreen].scale;
+    UIGraphicsBeginImageContext(CGSizeMake(size, size));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIColor *backgroudColor = [self getRandomColor:aString];
+    CGContextSetStrokeColorWithColor(context, backgroudColor.CGColor);
+    CGContextSetFillColorWithColor(context, backgroudColor.CGColor);
+    CGContextAddRect(context, CGRectMake(0, 0, size, size));
+    CGContextDrawPath(context, kCGPathFillStroke);
+    
+    NSDictionary *attributes = @{NSFontAttributeName : [UIFont systemFontOfSize:(size - 2 * margin)],
+                                 NSForegroundColorAttributeName : [UIColor whiteColor],
+                                 NSBackgroundColorAttributeName : [UIColor clearColor]};
+    CGSize textSize = [aString sizeWithAttributes:attributes];
+    [aString drawInRect:CGRectMake((size - textSize.width) / 2, (size - textSize.height) / 2, textSize.width,
+                                textSize.height)
+      withAttributes:attributes];
+    
+    UIImage *originImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return originImage;
+}
+
++ (UIColor *)getRandomColor:(NSString *)randomKey {
+    int colorIndex = 0;
+    NSArray *colorList = @[ @(0x3A91F3), @(0x74CFDE), @(0xF14E7D), @(0x5585A5), @(0xF9CB4F), @(0xF56B2F) ];
+    if (randomKey.length > 0) {
+        colorIndex = [randomKey characterAtIndex:randomKey.length - 1] % colorList.count;
+    }
+    
+    long rgbValue = [colorList[colorIndex] longValue];
+    return [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0
+                           green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0
+                            blue:((float)(rgbValue & 0xFF)) / 255.0
+                           alpha:1];
 }
 
 - (BOOL)pk_hasAlphaChannel {
@@ -41,6 +81,7 @@
     if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
         viewOrientation = @"Landscape";
     }
+    
     NSArray *imagesDict = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"UILaunchImages"];
     UIWindow *currentWindow = [[UIApplication sharedApplication].windows firstObject];
     NSString *launchImageName = nil;
@@ -87,9 +128,8 @@
 
 - (UIImage *)pk_imageWithScaledToTargetWidth:(CGFloat)targetWidth {
     if (targetWidth <= 0) return nil;
-    CGSize originSize = self.size;
-    if (originSize.width > targetWidth) {
-        CGFloat scaleFactor = originSize.height / originSize.width;
+    if (self.size.width > targetWidth) {
+        CGFloat scaleFactor = self.size.height / self.size.width;
         CGFloat targetHeight = targetWidth * scaleFactor;
         CGSize targetSize = CGSizeMake(targetWidth, targetHeight);
         return [self pk_imageWithScaledToTargetSize:targetSize];
@@ -99,9 +139,8 @@
 
 - (UIImage *)pk_imageWithScaledToTargetHeight:(CGFloat)targetHeight {
     if (targetHeight <= 0) return nil;
-    CGSize originSize = self.size;
-    if (originSize.height > targetHeight) {
-        CGFloat scaleFactor = originSize.width / originSize.height;
+    if (self.size.height > targetHeight) {
+        CGFloat scaleFactor = self.size.width / self.size.height;
         CGFloat targetWidth = targetHeight * scaleFactor;
         CGSize targetSize = CGSizeMake(targetWidth, targetHeight);
         return [self pk_imageWithScaledToTargetSize:targetSize];
@@ -111,6 +150,7 @@
 
 - (NSData *)pk_imageWithCompressedQualityToTargetKb:(NSInteger)targetKb {
     if (targetKb <= 0) return nil;
+
     CGFloat compression = 1.0f;
     CGFloat minCompression = 0.1f;
     NSData *imageData = UIImageJPEGRepresentation(self, compression);
@@ -120,6 +160,7 @@
         imageData = UIImageJPEGRepresentation(self, compression);
         imageKb = [imageData length] / 1024;
     }
+    
     return imageData;
 }
 

@@ -16,7 +16,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable UIImage *)pk_imageWithColor:(UIColor *)color;
 
 /** 根据颜色和大小创建并返回一个纯色的图像 */
-+ (nullable UIImage *)pk_imageWithColor:(UIColor *)color size:(CGSize)size;
++ (nullable UIImage *)pk_imageWithColor:(UIColor *)color size:(CGFloat)size;
+
+/** 根据文字和字体大小生成一个文本图像 */
++ (nullable UIImage *)pk_imageWithString:(NSString *)aString fontSize:(CGFloat)size margin:(CGFloat)margin;
 
 /** 该图像是否有alpha通道 */
 - (BOOL)pk_hasAlphaChannel;
