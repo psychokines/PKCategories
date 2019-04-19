@@ -22,15 +22,7 @@
     
 //    [self example1];
 //    [self example2];
-//    [self example3];
-    
-    NSString *sd = @"398.4";
-    if ([sd pk_isPureNumber]) {
-        NSLog(@"pk_isPureNumber ~~~yes");
-    } else {
-        NSLog(@"pk_isPureNumber ~~~~no");
-    }
-    
+    [self example3];
 }
 
 - (void)example1 {
