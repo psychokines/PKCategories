@@ -22,7 +22,8 @@
     
 //    [self example1];
 //    [self example2];
-    [self example3];
+//    [self example3];
+    [self example4];
 }
 
 - (void)example1 {
@@ -72,6 +73,12 @@
         }
     }
     return [UIImage pk_imageWithString:name fontSize:size margin:20];
+}
+
+- (void)example4 {
+    UIColor *color = [[UIColor pk_colorWithHexString:@"#FFC0CB"] colorWithAlphaComponent:0.2];
+    NSArray<NSNumber *> *array = [color pk_RGBAValues];
+    NSLog(@"%@", array);
 }
 
 @end
