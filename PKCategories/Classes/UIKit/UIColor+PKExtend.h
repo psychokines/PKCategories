@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (UIColor *)pk_colorWithRGB:(NSUInteger)rgbValue;
 - (NSUInteger)pk_RGBAValue;
 - (NSUInteger)pk_RGBValue;
+- (NSArray<NSNumber *> *)pk_RGBAValues;
 
 /** 系统蓝 */
 + (UIColor *)pk_systemBlueColor;

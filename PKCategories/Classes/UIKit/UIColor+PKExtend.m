@@ -33,7 +33,7 @@
 }
 
 - (NSUInteger)pk_RGBAValue {
-    CGFloat r = 0, g = 0, b = 0, a = 0;
+    CGFloat r = 0.0, g = 0.0, b = 0.0, a = 0.0;
     if ([self getRed:&r green:&g blue:&b alpha:&a]) {
         NSUInteger red = (NSUInteger)(r * 255 + 0.5);
         NSUInteger green = (NSUInteger)(g * 255 + 0.5);
@@ -45,7 +45,7 @@
 }
 
 - (NSUInteger)pk_RGBValue {
-    CGFloat r = 0, g = 0, b = 0, a = 0;
+    CGFloat r = 0.0, g = 0.0, b = 0.0, a = 0.0;
     if ([self getRed:&r green:&g blue:&b alpha:&a]) {
         NSUInteger red = (NSUInteger)(r * 255 + 0.5);
         NSUInteger green = (NSUInteger)(g * 255 + 0.5);
@@ -53,6 +53,17 @@
         return (red << 16) + (green << 8) + blue;
     }
     return 0;
+}
+
+- (NSArray<NSNumber *> *)pk_RGBAValues {
+    CGFloat r = 0.0, g = 0.0, b = 0.0, a = 0.0;
+    if ([self getRed:&r green:&g blue:&b alpha:&a]) {
+        NSUInteger red = (NSUInteger)(r * 255 + 0.5);
+        NSUInteger green = (NSUInteger)(g * 255 + 0.5);
+        NSUInteger blue = (NSUInteger)(b * 255 + 0.5);
+        return @[@(red), @(green), @(blue), @(a)];
+    }
+    return @[@(0), @(0), @(0), @(0)];
 }
 
 + (UIColor *)pk_systemBlueColor {
