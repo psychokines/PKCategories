@@ -23,7 +23,8 @@
 //    [self example1];
 //    [self example2];
 //    [self example3];
-    [self example4];
+//    [self example4];
+    [self example5];
 }
 
 - (void)example1 {
@@ -79,6 +80,15 @@
     UIColor *color = [[UIColor pk_colorWithHexString:@"#FFC0CB"] colorWithAlphaComponent:0.2];
     NSArray<NSNumber *> *array = [color pk_RGBAValues];
     NSLog(@"%@", array);
+}
+
+- (void)example5 {
+    NSString *bundle = [NSBundle pk_mainBundleWithName:@"pk_filesA.json"];
+    NSString *jsonStriing = [[NSString alloc] initWithContentsOfFile:bundle
+                                                            encoding:NSUTF8StringEncoding
+                                                               error:nil];
+    NSArray *array = [NSArray pk_arrayWithJSONString:jsonStriing];
+    NSLog(@"array======> %@", array);
 }
 
 @end

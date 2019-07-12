@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, class, readonly) NSString *pk_appDisplayName;
 
 /** 从mainbundle路径下读取文件 */
-+ (nullable NSBundle *)pk_mainBundleWithName:(NSString *)fileName;
++ (nullable NSString *)pk_mainBundleWithName:(NSString *)fileName;
 
 @end
 

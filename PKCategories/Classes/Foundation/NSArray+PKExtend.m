@@ -89,7 +89,7 @@
     return array.copy;
 }
 
-- (NSString *)pk_jsonStringEncoded {
+- (NSString *)pk_JSONString {
     if ([NSJSONSerialization isValidJSONObject:self]) {
         NSError *error;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:kNilOptions error:&error];
@@ -99,12 +99,24 @@
     return nil;
 }
 
-- (NSString *)pk_jsonPrettyStringEncoded {
+- (NSString *)pk_JSONPrettyString {
     if ([NSJSONSerialization isValidJSONObject:self]) {
         NSError *error;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self options:NSJSONWritingPrettyPrinted error:&error];
         NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         return json;
+    }
+    return nil;
+}
+
++ (NSArray *)pk_arrayWithJSONString:(NSString *)jsonString {
+    if (jsonString) {
+        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        id value = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                   options:NSJSONReadingMutableContainers
+                                                     error:&error];
+        if (!error && [value isKindOfClass:[NSArray class]]) return (NSArray *)value;
     }
     return nil;
 }

@@ -44,15 +44,14 @@
 }
 
 + (NSDictionary *)pk_dictionaryWithJSONString:(NSString *)jsonString {
-    if (jsonString == nil) {
-        return nil;
+    if (jsonString) {
+        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *error;
+        id value = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                   options:NSJSONReadingMutableContainers
+                                                     error:&error];
+        if (!error && [value isKindOfClass:[NSDictionary class]]) return (NSDictionary *)value;
     }
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *error;
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:jsonData
-                                                         options:NSJSONReadingMutableContainers
-                                                           error:&error];
-    if (!error) return dict;
     return nil;
 }
 

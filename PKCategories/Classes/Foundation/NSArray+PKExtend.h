@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return json格式的字符串或nil
  */
-- (nullable NSString *)pk_jsonStringEncoded;
+- (nullable NSString *)pk_JSONString;
 
 /**
  *  将数组转换成json字符串，字符串以json格式化输出
@@ -57,7 +57,15 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return json格式的字符串或nil
  */
-- (nullable NSString *)pk_jsonPrettyStringEncoded;
+- (nullable NSString *)pk_JSONPrettyString;
+
+/**
+ * @brief 将Json格式字符串转数组
+ *
+ * @param jsonString JSON格式的字符串
+ * @return 返回数组或nil
+ */
++ (nullable NSArray *)pk_arrayWithJSONString:(NSString *)jsonString;
 
 @end
 

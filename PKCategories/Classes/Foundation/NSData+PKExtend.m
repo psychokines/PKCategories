@@ -12,15 +12,14 @@
 @implementation NSData (PKExtend)
 
 - (id)pk_jsonValueDecoded {
-    if ([NSJSONSerialization isValidJSONObject:self]) {
-        NSError *error = nil;
-        id value = [NSJSONSerialization JSONObjectWithData:self options:kNilOptions error:&error];
-        if (error) {
-            NSLog(@"jsonValueDecoded error:%@", error);
-        }
-        return value;
+    NSError *error = nil;
+    id value = [NSJSONSerialization JSONObjectWithData:self
+                                                   options:NSJSONReadingMutableContainers
+                                                     error:&error];
+    if (error) {
+        NSLog(@"jsonValueDecoded error:%@", error);
     }
-    return nil;
+    return value;
 }
 
 - (NSString *)pk_UTF8StringEncoded {
