@@ -84,22 +84,25 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)pk_currencyStringWithDigits:(NSNumber *)number;
 
 /**
- *  @brief NSNumber转万亿字符串，保留四舍五入后的两位小数
+ *  @brief NSNumber转万亿字符串，自定义小数点后保留的位数
  *
  *  @e.g.  125601 = 12.56万
  *         125651 = 12.57万
  *         1256010101 = 12.56亿
- *         1256510101 = 12.57亿
+ *         12560101015001 = 12.56万亿
  *
  *  @return 返回万或亿字符串
  */
-+ (NSString *)pk_compactUnitStringWithDoubleDigits:(NSNumber *)number;
++ (NSString *)pk_trillionStringWithDigits:(NSNumber *)number keepPlaces:(short)place;
 
-/** 判断浮点数对象是否为0 */
+/** NSNumber转万亿字符串，保留四舍五入后的两位小数 */
++ (NSString *)pk_trillionStringWithDoubleDigits:(NSNumber *)number;
+
+/** 判断浮点数对象是否为0值 (最小误差为1e-6) */
 - (BOOL)pk_isEqualZero;
 
 /**
- *  @brief 判断浮点数对象是否为0
+ *  @brief 判断浮点数对象是否为0值
  *
  *  @param minimumError 设置最小误差 (小于最小误差即视为0值)
  *
@@ -107,12 +110,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (BOOL)pk_isEqualZeroWithMinimumError:(CGFloat)minimumError;
 
-/**
- *  @brief 判断浮点数对象是否为0，最小误差为0.01 (小于最小误差就视为0值)
- *
- *  @return 小于0.01返回YES，反之返回NO
- */
-- (BOOL)pk_isEqualDoubleZero;
+/** 判断字符串是否为浮点数(包括正数负数和零) */
+- (BOOL)isFloatNumber:(NSString *)string;
+
+/** 判断字符串是否为整形(包括正整数负整数和零) */
+- (BOOL)isIntegerNumber:(NSString *)string;
 
 @end
 

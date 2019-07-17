@@ -103,39 +103,58 @@
     return [NSNumberFormatter localizedStringFromNumber:number numberStyle:NSNumberFormatterCurrencyStyle];
 }
 
-+ (NSInteger)pk_makeFactors:(CGFloat)value units:(NSString *__autoreleasing *)unitsFlag {
++ (double)pk_makeFactors:(CGFloat)value units:(NSString *__autoreleasing *)unitsFlag {
     NSInteger index = 0; *unitsFlag = @"";
     if (value < 10000) {
     } else if (value < 100000000) {
         index = 4; *unitsFlag = @"万";
-    } else {
+    } else if (value < 1000000000000) {
         index = 8; *unitsFlag = @"亿";
+    } else {
+        index = 12; *unitsFlag = @"万亿";
     }
     return pow(10, index);
 }
 
-+ (NSString *)pk_compactUnitStringWithDoubleDigits:(NSNumber *)number {
++ (NSString *)pk_trillionStringWithDigits:(NSNumber *)number keepPlaces:(short)place {
     CGFloat numberValue = number.doubleValue;
     NSString *unit = @"";
-    NSInteger factor = [self pk_makeFactors:fabs(numberValue) units:&unit];
+    double factor = [self pk_makeFactors:fabs(numberValue) units:&unit];
     CGFloat value1 = numberValue / factor;
-    NSString *string = [NSNumber pk_stringWithDoubleDigits:@(value1)];
+    NSString *string = [NSNumber pk_stringWithDigits:@(value1) keepPlaces:place];
     return [string stringByAppendingString:unit];
 }
 
++ (NSString *)pk_trillionStringWithDoubleDigits:(NSNumber *)number {
+    return [self pk_trillionStringWithDigits:number keepPlaces:2];
+}
+
 - (BOOL)pk_isEqualZero {
-    return [self pk_isEqualZeroWithMinimumError:CGFLOAT_MIN];
+    return [self pk_isEqualZeroWithMinimumError:1e-6];
 }
 
 - (BOOL)pk_isEqualZeroWithMinimumError:(CGFloat)minimumError {
-    if (minimumError < 0) minimumError = CGFLOAT_MIN;
+    if (minimumError < 0) minimumError = 1e-6;
     CGFloat _EPSILON = minimumError;
     return (fabs(self.doubleValue) < _EPSILON);
 }
 
-- (BOOL)pk_isEqualDoubleZero {
-    CGFloat _EPSILON = 0.01;
-    return (fabs(self.doubleValue) < _EPSILON);
+- (BOOL)isFloatNumber:(NSString *)string {
+    if (string.length > 0) {
+        NSScanner *scan = [NSScanner scannerWithString:string];
+        double value;
+        return [scan scanDouble:&value] && [scan isAtEnd];
+    }
+    return NO;
+}
+
+- (BOOL)isIntegerNumber:(NSString *)string {
+    if (string.length > 0) {
+        NSScanner *scan = [NSScanner scannerWithString:string];
+        NSInteger val;
+        return [scan scanInteger:&val] && [scan isAtEnd];
+    }
+    return NO;
 }
 
 @end
