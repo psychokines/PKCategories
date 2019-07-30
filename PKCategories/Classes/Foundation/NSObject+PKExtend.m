@@ -54,11 +54,22 @@ static void *NSObjectPKAssociatedStringKey = &NSObjectPKAssociatedStringKey;
 static void *NSObjectPKAssociatedBOOLKey = &NSObjectPKAssociatedBOOLKey;
 @implementation NSObject (PKAssociated)
 
+- (void)pk_setWeakAssociatedValue:(id)value withKey:(void *)key {
+    id __weak __weak_object = value;
+    id (^_weak_block)(void) = ^{ return __weak_object; };
+    objc_setAssociatedObject(self, key, _weak_block, OBJC_ASSOCIATION_COPY);
+}
+
+- (id)pk_getWeakAssociatedValueForKey:(void *)key {
+    id (^_weak_block)(void) = objc_getAssociatedObject(self, key);
+    return _weak_block ? _weak_block() : nil;
+}
+
 - (void)pk_setAssociatedValue:(id)value withKey:(void *)key {
     objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void)pk_setAssociatedWeakValue:(id)value withKey:(void *)key {
+- (void)pk_setAssociatedAssignValue:(id)value withKey:(void *)key {
     objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_ASSIGN);
 }
 

@@ -26,11 +26,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (PKAssociated)
 
+/** A weak reference associated */
+- (void)pk_setWeakAssociatedValue:(nullable id)value withKey:(void *)key;
+
+/** Get weak associated value */
+- (nullable id)pk_getWeakAssociatedValueForKey:(void *)key;
+
 /** Association Policy - OBJC_ASSOCIATION_RETAIN_NONATOMIC */
 - (void)pk_setAssociatedValue:(nullable id)value withKey:(void *)key;
 
 /** Association Policy - OBJC_ASSOCIATION_ASSIGN */
-- (void)pk_setAssociatedWeakValue:(nullable id)value withKey:(void *)key;
+- (void)pk_setAssociatedAssignValue:(nullable id)value withKey:(void *)key;
 
 /** Association Policy - OBJC_ASSOCIATION_COPY_NONATOMIC */
 - (void)pk_setCopyValue:(nullable id)value withKey:(SEL)key;
