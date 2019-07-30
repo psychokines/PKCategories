@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 获取数组中后count个元素(返回新数组) */
 - (nullable NSArray *)pk_subarrayWithBackCount:(NSUInteger)count;
 
+/** 将数组分成多个子数组，每组有group个元素，不足group个的单独一组 (group > 0) */
+- (nonnull NSArray<NSArray *> *)pk_subarraysSeparated:(NSInteger)group;
+
 /** 获取anObject的后一个元素 (若anObject是末尾元素，则返回首元素) */
 - (nullable ObjectType)pk_objectGreaterThanObject:(ObjectType)anObject;
 

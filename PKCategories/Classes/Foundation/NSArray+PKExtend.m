@@ -35,6 +35,27 @@
     return [self subarrayWithRange:NSMakeRange(self.count - count, count)];
 }
 
+- (NSArray<NSArray *> *)pk_subarraysSeparated:(NSInteger)group {
+    NSInteger count = [self count];
+    if (group >= count || group < 1) return self.copy;
+    
+    NSMutableArray *mud = [NSMutableArray array];
+    for (NSInteger i = 0; i < count - group; i+=group) {
+        NSArray *result = [self subarrayWithRange:NSMakeRange(i, group)];
+        [mud addObject:result];
+    }
+    
+    NSInteger p = (NSInteger)(count % group);
+    if (p > 0) {
+        NSArray *result = [self subarrayWithRange:NSMakeRange(count - p, p)];
+        [mud addObject:result];
+    } else {
+        NSArray *result = [self subarrayWithRange:NSMakeRange(count - group, group)];
+        [mud addObject:result];
+    }
+    return mud.copy;
+}
+
 - (id)pk_objectGreaterThanObject:(id)anObject {
     if ([self containsObject:anObject]) {
         NSUInteger index = [self indexOfObject:anObject];
