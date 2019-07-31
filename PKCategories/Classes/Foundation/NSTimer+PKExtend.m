@@ -10,7 +10,7 @@
 
 @implementation NSTimer (PKExtend)
 
-+ (double)pk_runingTimeConsumed:(void ( ^)(void))block {
++ (double)pk_runingTimeConsumingBlock:(void ( ^)(void))block {
     double a = CFAbsoluteTimeGetCurrent();
     if (block) block();
     double b = CFAbsoluteTimeGetCurrent();

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface NSTimer (PKExtend)
 
 /** 运行耗时测试(单位:毫秒) */
-+ (double)pk_runingTimeConsumed:(void (^)(void))block;
++ (double)pk_runingTimeConsumingBlock:(void (^)(void))block;
 
 /** 对系统方法增加block回调事件 */
 + (NSTimer *)pk_scheduledTimerWithTimeInterval:(NSTimeInterval)seconds
