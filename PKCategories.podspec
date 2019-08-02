@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PKCategories'
-  s.version          = '0.2.9'
+  s.version          = '0.3.1'
   s.summary          = 'A collection of category kit for iOS development.'
 
 # This description is used to generate tags and improve search results.
@@ -22,7 +22,6 @@ Pod::Spec.new do |s|
 #                        DESC
 
   s.homepage         = 'https://github.com/PsychokinesisTeam/PKCategories'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'PsychokinesisTeam' => 'haozhang0770@163.com' }
   s.source           = { :git => 'https://github.com/PsychokinesisTeam/PKCategories.git', :tag => s.version.to_s }
@@ -48,11 +47,4 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'PKCategories/Classes/Other/**/*.h'
   end
   
-  # s.resource_bundles = {
-  #   'PKCategories' => ['PKCategories/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
