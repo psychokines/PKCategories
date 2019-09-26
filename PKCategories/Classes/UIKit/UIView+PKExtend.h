@@ -116,6 +116,12 @@ typedef NS_OPTIONS(NSUInteger, PKEdgeLinePosition) {
 /** 自定义指示器颜色并开始加载 */
 - (void)pk_beginIndicatorLoading:(UIColor *)tintColor;
 
+/** 设置指示器文本并开始加载 */
+- (void)pk_beginIndicatorLoadingText:(NSString *)message;
+
+/** 自定义指示器颜色及文本并开始加载 */
+- (void)pk_beginIndicatorLoadingText:(nullable NSString *)message tintColor:(UIColor *)tintColor;
+
 /** 指示器结束加载 */
 - (void)pk_endIndicatorLoading;
 

@@ -76,7 +76,7 @@ static void *UIButtonAssociatedPKBackgroundColorKey = &UIButtonAssociatedPKBackg
         [self.superview layoutIfNeeded];
     }
     
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     indicator.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     indicator.color = tintColor;
     CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 1.0f);

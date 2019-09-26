@@ -344,6 +344,7 @@ static void *UIViewAssociatedPKBadgeLabelKey = &UIViewAssociatedPKBadgeLabelKey;
 
 static void *UIViewPKIsIndicatorLoadingKey = &UIViewPKIsIndicatorLoadingKey;
 static void *UIViewPKIndicatorLoadingViewKey = &UIViewPKIndicatorLoadingViewKey;
+static void *UIViewPKIndicatorTipLabelKey = &UIViewPKIndicatorTipLabelKey;
 
 @implementation UIView (PKIndicatorLoading)
 
@@ -358,7 +359,7 @@ static void *UIViewPKIndicatorLoadingViewKey = &UIViewPKIndicatorLoadingViewKey;
 - (UIActivityIndicatorView *)pk_indicatorView {
     UIActivityIndicatorView *loadingView = objc_getAssociatedObject(self, UIViewPKIndicatorLoadingViewKey);
     if (!loadingView) {
-        loadingView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+        loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         loadingView.hidesWhenStopped = NO;
         loadingView.color = [UIColor grayColor];
         objc_setAssociatedObject(self, UIViewPKIndicatorLoadingViewKey, loadingView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -366,19 +367,49 @@ static void *UIViewPKIndicatorLoadingViewKey = &UIViewPKIndicatorLoadingViewKey;
     return loadingView;
 }
 
-- (void)pk_beginIndicatorLoading:(UIColor *)tintColor {
-    if (self.pk_isIndicatorLoading) return;
-    self.pk_indicatorView.color = tintColor;
-    [self pk_beginIndicatorLoading];
+- (UILabel *)pk_indicatorLabel {
+    UILabel *indicatorLabel = objc_getAssociatedObject(self, UIViewPKIndicatorTipLabelKey);
+    if (!indicatorLabel) {
+        indicatorLabel = [[UILabel alloc] init];
+        indicatorLabel.numberOfLines = 1;
+        indicatorLabel.font = [UIFont systemFontOfSize:12];
+        indicatorLabel.textAlignment = NSTextAlignmentCenter;
+        indicatorLabel.textColor = [UIColor grayColor];
+        indicatorLabel.frame = CGRectMake(0, 0, UIScreen.mainScreen.bounds.size.width, 20);
+        objc_setAssociatedObject(self, UIViewPKIndicatorTipLabelKey, indicatorLabel, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return indicatorLabel;
 }
 
-- (void)pk_beginIndicatorLoading {
+- (void)pk_beginIndicatorLoading:(UIColor *)tintColor {
+    if (self.pk_isIndicatorLoading) return;
+    [self pk_beginIndicatorLoadingText:nil tintColor:tintColor];
+}
+
+- (void)pk_beginIndicatorLoadingText:(NSString *)message {
+    if (self.pk_isIndicatorLoading) return;
+    [self pk_beginIndicatorLoadingText:message tintColor:[UIColor grayColor]];
+}
+
+- (void)pk_beginIndicatorLoadingText:(NSString *)message tintColor:(UIColor *)tintColor {
     if (self.pk_isIndicatorLoading) return;
     [self pk_setIndicatorLoading:YES];
     [self layoutIfNeeded];
     [self addSubview:self.pk_indicatorView];
+    self.pk_indicatorView.color = tintColor;
     self.pk_indicatorView.center = CGPointMake(self.bounds.size.width / 2, self.bounds.size.height / 2);
     [self.pk_indicatorView startAnimating];
+    if (message) {
+        [self addSubview:self.pk_indicatorLabel];
+        self.pk_indicatorLabel.text = message;
+        self.pk_indicatorLabel.textColor = tintColor;
+        self.pk_indicatorLabel.center = CGPointMake(self.bounds.size.width / 2, self.pk_indicatorView.center.y + self.pk_indicatorView.bounds.size.height + 5);
+    }
+}
+
+- (void)pk_beginIndicatorLoading {
+    if (self.pk_isIndicatorLoading) return;
+    [self pk_beginIndicatorLoadingText:nil tintColor:[UIColor grayColor]];
 }
 
 - (void)pk_endIndicatorLoading {
@@ -387,6 +418,10 @@ static void *UIViewPKIndicatorLoadingViewKey = &UIViewPKIndicatorLoadingViewKey;
     [self.pk_indicatorView stopAnimating];
     [self.pk_indicatorView removeFromSuperview];
     objc_setAssociatedObject(self, UIViewPKIndicatorLoadingViewKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (objc_getAssociatedObject(self, UIViewPKIndicatorTipLabelKey)) {
+        [self.pk_indicatorLabel removeFromSuperview];
+        objc_setAssociatedObject(self, UIViewPKIndicatorTipLabelKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
 }
 
 @end

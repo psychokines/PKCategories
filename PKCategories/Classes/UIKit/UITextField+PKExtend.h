@@ -26,4 +26,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+@interface UITextField (PKPlaceholder)
+
+/** 设置占位文本颜色 */
+@property (nonatomic, strong, nullable) UIColor *pk_placeholderColor;
+
+@end
+
+
 NS_ASSUME_NONNULL_END
