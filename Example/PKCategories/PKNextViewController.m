@@ -20,38 +20,53 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    [self example1];
-//    [self example2];
+    [self example1];
+    [self example2];
+    
 //    [self example3];
 //    [self example4];
-    [self example5];
+//    [self example5];
 }
 
 - (void)example1 {
-    [self.view pk_beginIndicatorLoading];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.view pk_endIndicatorLoading];
+    UIImage *loadingImage = [UIImage imageNamed:@"hud_loading_03"];
+    [self.view pk_showHud:@"正在加载" image:loadingImage spin:YES layout:PKHudLayoutTop];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.view pk_hideHud];
+        UIImage *successImage = [UIImage imageNamed:@"hud_success_01"];
+        [self.view pk_showHud:@"加载完成" image:successImage layout:PKHudLayoutTop];
     });
-    
-    [self.view pk_showToastText:@"加载失败" delay:2];
 }
 
 - (void)example2 {
-    NSArray<NSString *> *array = @[@"~~~~~~~~~~", @"abc", @"abcdef", @"zhang-zhang-zheng"];
-    NSArray *mapArray = [array pk_map:^id _Nonnull(NSString * _Nonnull obj) {
-        return [obj stringByAppendingString:@"666"];
-    }];
-    NSLog(@"mapArray is: %@", mapArray);
+    PKHudStyle *style = [[PKHudStyle alloc] init];
+    style.positionOffset = 200;
+    style.cornerRadius = 4;
     
-    NSArray *filerArray = [array pk_filer:^BOOL(NSString * _Nonnull obj) {
-        return obj.length < 5;
-    }];
-    NSLog(@"filerArray is: %@", filerArray);
+    UIImage *loadingImage = [UIImage imageNamed:@"hud_loading_03"];
+    [self.view pk_showHud:@"正在加载" image:loadingImage spin:YES layout:PKHudLayoutLeft position:PKHudPositionTop style:style];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.view pk_hideHud];
+        UIImage *failureImage = [UIImage imageNamed:@"hud_failure_01"];
+        [self.view pk_showHud:@"加载失败" image:failureImage spin:NO layout:PKHudLayoutLeft position:PKHudPositionTop style:style];
+    });
     
-    NSInteger lastLength = [array pk_filer:^BOOL(NSString * _Nonnull obj) {
-        return obj.length > 3;
-    }].lastObject.length;
-    NSLog(@"lastLength is: %ld", (long)lastLength);
+    
+//    NSArray<NSString *> *array = @[@"~~~~~~~~~~", @"abc", @"abcdef", @"zhang-zhang-zheng"];
+//    NSArray *mapArray = [array pk_map:^id _Nonnull(NSString * _Nonnull obj) {
+//        return [obj stringByAppendingString:@"666"];
+//    }];
+//    NSLog(@"mapArray is: %@", mapArray);
+//
+//    NSArray *filerArray = [array pk_filer:^BOOL(NSString * _Nonnull obj) {
+//        return obj.length < 5;
+//    }];
+//    NSLog(@"filerArray is: %@", filerArray);
+//
+//    NSInteger lastLength = [array pk_filer:^BOOL(NSString * _Nonnull obj) {
+//        return obj.length > 3;
+//    }].lastObject.length;
+//    NSLog(@"lastLength is: %ld", (long)lastLength);
 }
 
 - (void)example3 {

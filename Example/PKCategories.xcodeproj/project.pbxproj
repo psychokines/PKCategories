@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E2858B724A2ED42005C8690 /* hud_success_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2858AF24A2ED42005C8690 /* hud_success_02.png */; };
+		3E2858B824A2ED42005C8690 /* hud_success_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2858B024A2ED42005C8690 /* hud_success_03.png */; };
+		3E2858B924A2ED42005C8690 /* hud_success_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2858B124A2ED42005C8690 /* hud_success_01.png */; };
+		3E2858BA24A2ED42005C8690 /* hud_loading_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2858B224A2ED42005C8690 /* hud_loading_01.png */; };
+		3E2858BB24A2ED42005C8690 /* hud_loading_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2858B324A2ED42005C8690 /* hud_loading_02.png */; };
+		3E2858BC24A2ED42005C8690 /* hud_loading_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2858B424A2ED42005C8690 /* hud_loading_03.png */; };
+		3E2858BD24A2ED42005C8690 /* hud_failure_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2858B524A2ED42005C8690 /* hud_failure_01.png */; };
+		3E2858BE24A2ED42005C8690 /* hud_failure_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E2858B624A2ED42005C8690 /* hud_failure_02.png */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -42,6 +50,14 @@
 /* Begin PBXFileReference section */
 		0E517E249F7B0382063AC517 /* Pods-PKCategories_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PKCategories_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PKCategories_Tests/Pods-PKCategories_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		19D647FF31AB41A7C36FEA36 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		3E2858AF24A2ED42005C8690 /* hud_success_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_success_02.png; sourceTree = "<group>"; };
+		3E2858B024A2ED42005C8690 /* hud_success_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_success_03.png; sourceTree = "<group>"; };
+		3E2858B124A2ED42005C8690 /* hud_success_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_success_01.png; sourceTree = "<group>"; };
+		3E2858B224A2ED42005C8690 /* hud_loading_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_loading_01.png; sourceTree = "<group>"; };
+		3E2858B324A2ED42005C8690 /* hud_loading_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_loading_02.png; sourceTree = "<group>"; };
+		3E2858B424A2ED42005C8690 /* hud_loading_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_loading_03.png; sourceTree = "<group>"; };
+		3E2858B524A2ED42005C8690 /* hud_failure_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_failure_01.png; sourceTree = "<group>"; };
+		3E2858B624A2ED42005C8690 /* hud_failure_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hud_failure_02.png; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* PKCategories_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PKCategories_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -102,9 +118,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E2858AE24A2ED42005C8690 /* HUD_imgs */ = {
+			isa = PBXGroup;
+			children = (
+				3E2858AF24A2ED42005C8690 /* hud_success_02.png */,
+				3E2858B024A2ED42005C8690 /* hud_success_03.png */,
+				3E2858B124A2ED42005C8690 /* hud_success_01.png */,
+				3E2858B224A2ED42005C8690 /* hud_loading_01.png */,
+				3E2858B324A2ED42005C8690 /* hud_loading_02.png */,
+				3E2858B424A2ED42005C8690 /* hud_loading_03.png */,
+				3E2858B524A2ED42005C8690 /* hud_failure_01.png */,
+				3E2858B624A2ED42005C8690 /* hud_failure_02.png */,
+			);
+			path = HUD_imgs;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				3E2858AE24A2ED42005C8690 /* HUD_imgs */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for PKCategories */,
 				6003F5B5195388D20070C39A /* Tests */,
@@ -271,6 +303,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -290,12 +323,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E2858B824A2ED42005C8690 /* hud_success_03.png in Resources */,
+				3E2858BC24A2ED42005C8690 /* hud_loading_03.png in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				61CC99F022D81C18004FC918 /* pk_filesB.json in Resources */,
+				3E2858BE24A2ED42005C8690 /* hud_failure_02.png in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
+				3E2858BB24A2ED42005C8690 /* hud_loading_02.png in Resources */,
 				61CC99F122D81C18004FC918 /* pk_filesA.json in Resources */,
+				3E2858BD24A2ED42005C8690 /* hud_failure_01.png in Resources */,
+				3E2858B724A2ED42005C8690 /* hud_success_02.png in Resources */,
+				3E2858BA24A2ED42005C8690 /* hud_loading_01.png in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				3E2858B924A2ED42005C8690 /* hud_success_01.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
