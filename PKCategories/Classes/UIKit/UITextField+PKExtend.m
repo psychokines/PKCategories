@@ -81,7 +81,15 @@ static void *UITextFieldAssociatedPKPlaceholderKey = &UITextFieldAssociatedPKPla
 @implementation UITextField (PKPlaceholder)
 
 - (UIColor *)pk_placeholderColor {
-    return objc_getAssociatedObject(self, _cmd);
+    id colorValue = objc_getAssociatedObject(self, _cmd);
+    if (colorValue) {
+        return colorValue;
+    }
+    if (@available(iOS 13, *)) {
+        return [UIColor placeholderTextColor];
+    } else {
+        return [UIColor colorWithRed:60/255. green:60/255. blue:67/255. alpha:0.3];
+    }
 }
 
 - (void)setPk_placeholderColor:(UIColor *)pk_placeholderColor {
@@ -89,7 +97,6 @@ static void *UITextFieldAssociatedPKPlaceholderKey = &UITextFieldAssociatedPKPla
     if (placeholder) {
         NSMutableAttributedString *attriText = [[NSMutableAttributedString alloc] initWithString:placeholder];
         [attriText addAttribute:NSForegroundColorAttributeName value:pk_placeholderColor range:NSMakeRange(0, placeholder.length)];
-//        [attriText addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, placeholder.length)];
         self.attributedPlaceholder = attriText;
     }
     objc_setAssociatedObject(self, @selector(pk_placeholderColor), pk_placeholderColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -106,7 +113,7 @@ static void *UITextFieldAssociatedPKPlaceholderKey = &UITextFieldAssociatedPKPla
 
 - (void)setPlaceholder:(NSString *)placeholder {
     objc_setAssociatedObject(self, UITextFieldAssociatedPKPlaceholderKey, placeholder, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    UIColor *placeholderClolor = objc_getAssociatedObject(self, @selector(pk_placeholderColor));
+    UIColor *placeholderClolor = [self pk_placeholderColor];
     if (placeholderClolor && placeholder) {
         self.attributedPlaceholder = [[NSMutableAttributedString alloc] initWithString:placeholder];
         [self setPk_placeholderColor:placeholderClolor];
